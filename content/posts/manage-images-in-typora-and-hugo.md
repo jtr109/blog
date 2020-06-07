@@ -43,3 +43,8 @@ staticDir = ["static/images"]
 ```
 
 此时拉起站点，就可以正常显示图片了！
+
+## 参考
+
+* [使用hugo搭建博客系统](https://blog.dianduidian.com/post/使用hugo搭建博客系统/)
+* [Images in Typora](https://support.typora.io/Images/)
