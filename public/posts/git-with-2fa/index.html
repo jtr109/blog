@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+
+    <meta name="author" content="jtr109">
+    <meta name="description" content="写在最前 作为开发者, 应该清楚地知道 &ldquo;密码再强也不是不可能被破解&rdquo;, 所以只要网站支持 2FA, 就建议在自己的帐号中配置 2FA 支持.
+在 GitLab 中使用 2FA GitLab 中如何开启 2FA 在文档中写得比较清晰, 而且其中推荐了几种可选的 one time password authenticators.
+但是按照这个方案操作完之后, 如果你的项目通过 https 指定远程 git 仓库地址, 你的 git 终端会要求你重新登录. 如果你足够耐心, 其实可以在页面下方找到解决方案.
+ When 2FA is enabled, you can no longer use your normal account password to authenticate with Git over HTTPS on the command line or when using GitLab’s API. You must use a personal access token instead.">
+    <meta name="keywords" content="blog,developer,personal">
+
+    
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="在 Git 托管服务中使用两步验证能力"/>
+<meta name="twitter:description" content="写在最前 作为开发者, 应该清楚地知道 &ldquo;密码再强也不是不可能被破解&rdquo;, 所以只要网站支持 2FA, 就建议在自己的帐号中配置 2FA 支持.
+在 GitLab 中使用 2FA GitLab 中如何开启 2FA 在文档中写得比较清晰, 而且其中推荐了几种可选的 one time password authenticators.
+但是按照这个方案操作完之后, 如果你的项目通过 https 指定远程 git 仓库地址, 你的 git 终端会要求你重新登录. 如果你足够耐心, 其实可以在页面下方找到解决方案.
+ When 2FA is enabled, you can no longer use your normal account password to authenticate with Git over HTTPS on the command line or when using GitLab’s API. You must use a personal access token instead."/>
+
+    <meta property="og:title" content="在 Git 托管服务中使用两步验证能力" />
+<meta property="og:description" content="写在最前 作为开发者, 应该清楚地知道 &ldquo;密码再强也不是不可能被破解&rdquo;, 所以只要网站支持 2FA, 就建议在自己的帐号中配置 2FA 支持.
+在 GitLab 中使用 2FA GitLab 中如何开启 2FA 在文档中写得比较清晰, 而且其中推荐了几种可选的 one time password authenticators.
+但是按照这个方案操作完之后, 如果你的项目通过 https 指定远程 git 仓库地址, 你的 git 终端会要求你重新登录. 如果你足够耐心, 其实可以在页面下方找到解决方案.
+ When 2FA is enabled, you can no longer use your normal account password to authenticate with Git over HTTPS on the command line or when using GitLab’s API. You must use a personal access token instead." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jtr109.github.io/posts/git-with-2fa/" />
+<meta property="article:published_time" content="2019-11-14T14:06:16+00:00" />
+<meta property="article:modified_time" content="2019-11-14T14:06:16+00:00" />
+
+
+    
+      <base href="https://jtr109.github.io/posts/git-with-2fa/">
+    
+    <title>
+  在 Git 托管服务中使用两步验证能力 · jtr109&#39;s Castle
+</title>
+
+    
+      <link rel="canonical" href="https://jtr109.github.io/posts/git-with-2fa/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://jtr109.github.io/css/coder.min.3219ef62ae52679b7a9c19043171c3cd9f523628c2a65f3ef247ee18836bc90b.css" integrity="sha256-MhnvYq5SZ5t6nBkEMXHDzZ9SNijCpl8&#43;8kfuGINryQs=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://jtr109.github.io/css/custom.css" />
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://jtr109.github.io/favicon/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://jtr109.github.io/favicon/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.72.0" />
+  </head>
+
+  
+  
+  <body class="colorscheme-light"
+        onload=""
+  >
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://jtr109.github.io/">
+      jtr109&#39;s Castle
+    </a>
+    
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jtr109.github.io/posts/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jtr109.github.io/categories/">Categories</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jtr109.github.io/tags/">Tags</a>
+          </li>
+        
+      
+      
+    </ul>
+    
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">在 Git 托管服务中使用两步验证能力</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2019-11-14T14:06:16Z'>
+                November 14, 2019
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              1-minute read
+            </span>
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="https://jtr109.github.io/categories/tech/">tech</a></div>
+
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="https://jtr109.github.io/tags/git/">git</a>
+      <span class="separator">•</span>
+    <a href="https://jtr109.github.io/tags/gitlab/">gitlab</a>
+      <span class="separator">•</span>
+    <a href="https://jtr109.github.io/tags/security/">security</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        
+        <h2 id="写在最前">写在最前</h2>
+<p>作为开发者, 应该清楚地知道 &ldquo;密码再强也不是不可能被破解&rdquo;, 所以只要网站支持 2FA, 就建议在自己的帐号中配置 2FA 支持.</p>
+<h2 id="在-gitlab-中使用-2fa">在 GitLab 中使用 2FA</h2>
+<p>GitLab 中如何开启 2FA 在<a href="https://docs.gitlab.com/ee/user/profile/account/two_factor_authentication.html#enable-2fa-via-one-time-password-authenticator">文档</a>中写得比较清晰, 而且其中推荐了几种可选的 one time password authenticators.</p>
+<p>但是按照这个方案操作完之后, 如果你的项目通过 https 指定远程 git 仓库地址, 你的 git 终端会要求你重新登录. 如果你足够耐心, 其实可以在页面下方找到<a href="https://docs.gitlab.com/ce/user/profile/account/two_factor_authentication.html#personal-access-tokens">解决方案</a>.</p>
+<blockquote>
+<p>When 2FA is enabled, you can no longer use your normal account password to authenticate with Git over HTTPS on the command line or when using <a href="https://docs.gitlab.com/ee/api/README.html">GitLab’s API</a>. You must use a <a href="https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html">personal access token</a> instead.</p>
+</blockquote>
+<p>所以使用 access token 作为密码即可登录自己的 git 帐号拉取和推送服务.</p>
+<h2 id="关于-access-token">关于 Access Token</h2>
+<p>建议所有在使用 access token 的过程中, 为每一个客户端使用一个单独的 token, 来避免找到一个 token 变成 &ldquo;死 token&rdquo;, 即这个 token &ldquo;可能&rdquo; 被用在很多地方, 而自己不知道具体在哪使用了.</p>
+<p>给每个客户端建立一个 token, 也不要让这些 token 落盘, 如果 logout 了之后, 请刷新 token, 并使用你的新 token 登录.</p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jtr109" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        
+        
+      </footer>
+    </article>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/startup.js" id="MathJax-script"></script>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [
+          ['$', '$'], ['\\(', '\\)']
+        ],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  </section>
+
+      </div>
+
+      
+  <footer class="footer">
+    <section class="container">
+      
+        <p>Welcome to My Castle.</p>
+      
+      
+        ©
+        
+        2020
+         jtr109 
+      
+      
+         · 
+        Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+      
+      
+    </section>
+  </footer>
+
+    </main>
+
+    
+
+    
+
+    
+
+  </body>
+
+</html>

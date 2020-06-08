@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on jtr109&#39;s Castle</title>
+    <link>https://jtr109.github.io/categories/</link>
+    <description>Recent content in Categories on jtr109&#39;s Castle</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 07 Jan 2020 23:45:24 +0000</lastBuildDate>
+    
+	<atom:link href="https://jtr109.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>tech</title>
+      <link>https://jtr109.github.io/categories/tech/</link>
+      <pubDate>Tue, 07 Jan 2020 23:45:24 +0000</pubDate>
+      
+      <guid>https://jtr109.github.io/categories/tech/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>journal</title>
+      <link>https://jtr109.github.io/categories/journal/</link>
+      <pubDate>Tue, 12 Nov 2019 08:09:52 +0000</pubDate>
+      
+      <guid>https://jtr109.github.io/categories/journal/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>开发笔记</title>
+      <link>https://jtr109.github.io/categories/%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Fri, 11 Aug 2017 06:34:06 +0800</pubDate>
+      
+      <guid>https://jtr109.github.io/categories/%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

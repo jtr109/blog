@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+
+    <meta name="author" content="jtr109">
+    <meta name="description" content="名词解释  Data Race &amp; Race Condition: 待补充, 可参考这个 StackOverflow 回答  问题描述 Django 的 ORM 操作中有一个非常实用的功能: get_or_create, 可以判断数据库中是否有符合条件的条目, 没有则创建.
+但是在使用过程中如果不加留意, 会发生 race condition. 导致数据库中创建出的条目不符合预期.
+以下面这部分代码为例:
+# models.py class Race(models.Model): user_id = models.CharField(max_length=32) name = models.CharField(max_length=32) 如果在项目中调用遇到了并发的情况, 会导致数据库中有一条以上的相同条目. 可以编写单元测试复现该问题:
+# tests.py class RaceTestCase(TestCase): def test_race(self): def get_or_create(): Race.objects.get_or_create( user_id=&#39;c53b8ba212ef4f15b2365e1bb3d524fe&#39;, defaults=dict(name=&#39;foo&#39;, age=1), ) threads = list() for _ in range(10): threads.append(threading.Thread(target=get_or_create)) for t in threads: t.start() for t in threads: t.join() self.">
+    <meta name="keywords" content="blog,developer,personal">
+
+    
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Django `get_or_create` 创建重复条目问题分析和处理"/>
+<meta name="twitter:description" content="名词解释  Data Race &amp; Race Condition: 待补充, 可参考这个 StackOverflow 回答  问题描述 Django 的 ORM 操作中有一个非常实用的功能: get_or_create, 可以判断数据库中是否有符合条件的条目, 没有则创建.
+但是在使用过程中如果不加留意, 会发生 race condition. 导致数据库中创建出的条目不符合预期.
+以下面这部分代码为例:
+# models.py class Race(models.Model): user_id = models.CharField(max_length=32) name = models.CharField(max_length=32) 如果在项目中调用遇到了并发的情况, 会导致数据库中有一条以上的相同条目. 可以编写单元测试复现该问题:
+# tests.py class RaceTestCase(TestCase): def test_race(self): def get_or_create(): Race.objects.get_or_create( user_id=&#39;c53b8ba212ef4f15b2365e1bb3d524fe&#39;, defaults=dict(name=&#39;foo&#39;, age=1), ) threads = list() for _ in range(10): threads.append(threading.Thread(target=get_or_create)) for t in threads: t.start() for t in threads: t.join() self."/>
+
+    <meta property="og:title" content="Django `get_or_create` 创建重复条目问题分析和处理" />
+<meta property="og:description" content="名词解释  Data Race &amp; Race Condition: 待补充, 可参考这个 StackOverflow 回答  问题描述 Django 的 ORM 操作中有一个非常实用的功能: get_or_create, 可以判断数据库中是否有符合条件的条目, 没有则创建.
+但是在使用过程中如果不加留意, 会发生 race condition. 导致数据库中创建出的条目不符合预期.
+以下面这部分代码为例:
+# models.py class Race(models.Model): user_id = models.CharField(max_length=32) name = models.CharField(max_length=32) 如果在项目中调用遇到了并发的情况, 会导致数据库中有一条以上的相同条目. 可以编写单元测试复现该问题:
+# tests.py class RaceTestCase(TestCase): def test_race(self): def get_or_create(): Race.objects.get_or_create( user_id=&#39;c53b8ba212ef4f15b2365e1bb3d524fe&#39;, defaults=dict(name=&#39;foo&#39;, age=1), ) threads = list() for _ in range(10): threads.append(threading.Thread(target=get_or_create)) for t in threads: t.start() for t in threads: t.join() self." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jtr109.github.io/posts/race-condition-when-using-django-get-or-create/" />
+<meta property="article:published_time" content="2019-11-09T22:09:45+00:00" />
+<meta property="article:modified_time" content="2019-11-09T22:09:45+00:00" />
+
+
+    
+      <base href="https://jtr109.github.io/posts/race-condition-when-using-django-get-or-create/">
+    
+    <title>
+  Django `get_or_create` 创建重复条目问题分析和处理 · jtr109&#39;s Castle
+</title>
+
+    
+      <link rel="canonical" href="https://jtr109.github.io/posts/race-condition-when-using-django-get-or-create/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://jtr109.github.io/css/coder.min.3219ef62ae52679b7a9c19043171c3cd9f523628c2a65f3ef247ee18836bc90b.css" integrity="sha256-MhnvYq5SZ5t6nBkEMXHDzZ9SNijCpl8&#43;8kfuGINryQs=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://jtr109.github.io/css/custom.css" />
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://jtr109.github.io/favicon/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://jtr109.github.io/favicon/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.72.0" />
+  </head>
+
+  
+  
+  <body class="colorscheme-light"
+        onload=""
+  >
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://jtr109.github.io/">
+      jtr109&#39;s Castle
+    </a>
+    
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jtr109.github.io/posts/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jtr109.github.io/categories/">Categories</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jtr109.github.io/tags/">Tags</a>
+          </li>
+        
+      
+      
+    </ul>
+    
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Django `get_or_create` 创建重复条目问题分析和处理</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2019-11-09T22:09:45Z'>
+                November 9, 2019
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              3-minute read
+            </span>
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="https://jtr109.github.io/categories/tech/">tech</a></div>
+
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="https://jtr109.github.io/tags/python/">python</a>
+      <span class="separator">•</span>
+    <a href="https://jtr109.github.io/tags/django/">django</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        
+        <h2 id="名词解释">名词解释</h2>
+<ul>
+<li>Data Race &amp; Race Condition: 待补充, 可参考<a href="https://stackoverflow.com/a/58161437/6522746">这个 StackOverflow 回答</a></li>
+</ul>
+<h2 id="问题描述">问题描述</h2>
+<p>Django 的 ORM 操作中有一个非常实用的功能: <a href="https://github.com/django/django/blob/2.2.6/django/db/models/query.py#L528"><code>get_or_create</code></a>, 可以判断数据库中是否有符合条件的条目, 没有则创建.</p>
+<p>但是在使用过程中如果不加留意, 会发生 race condition. 导致数据库中创建出的条目不符合预期.</p>
+<p>以下面这部分代码为例:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="font-style:italic"># models.py</span>
+
+<span style="font-weight:bold">class</span> <span style="font-weight:bold">Race</span>(models.Model):
+    user_id = models.CharField(max_length=32)
+    name = models.CharField(max_length=32)
+</code></pre></div><p>如果在项目中调用遇到了并发的情况, 会导致数据库中有一条以上的相同条目. 可以编写单元测试复现该问题:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="font-style:italic"># tests.py</span>
+
+<span style="font-weight:bold">class</span> <span style="font-weight:bold">RaceTestCase</span>(TestCase):
+
+    <span style="font-weight:bold">def</span> test_race(self):
+
+        <span style="font-weight:bold">def</span> get_or_create():
+            Race.objects.get_or_create(
+                user_id=<span style="font-style:italic">&#39;c53b8ba212ef4f15b2365e1bb3d524fe&#39;</span>,
+                defaults=dict(name=<span style="font-style:italic">&#39;foo&#39;</span>, age=1),
+            )
+
+        threads = list()
+        <span style="font-weight:bold">for</span> _ <span style="font-weight:bold">in</span> range(10):
+            threads.append(threading.Thread(target=get_or_create))
+        <span style="font-weight:bold">for</span> t <span style="font-weight:bold">in</span> threads:
+            t.start()
+        <span style="font-weight:bold">for</span> t <span style="font-weight:bold">in</span> threads:
+            t.join()
+        self.assertNotEqual(Race.objects.count(), 1)
+</code></pre></div><p>如果执行测试, 有一定概率会返回如下信息:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ python manage.py test
+...
+Exception in thread Thread-7:
+Traceback (most recent call last):
+  File <span style="font-style:italic">&#34;/Users/jtr109/.pyenv/versions/3.7.4/lib/python3.7/threading.py&#34;</span>, line 926, in _bootstrap_inner
+    self.run()
+  File <span style="font-style:italic">&#34;/Users/jtr109/.pyenv/versions/3.7.4/lib/python3.7/threading.py&#34;</span>, line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File <span style="font-style:italic">&#34;/Users/jtr109/mystuff/learn/django-update-or-create-example/race/tests.py&#34;</span>, line 20, in get_or_create
+    defaults=dict(name=<span style="font-style:italic">&#39;foo&#39;</span>, age=1),
+  File <span style="font-style:italic">&#34;/Users/jtr109/mystuff/learn/django-update-or-create-example/venv/lib/python3.7/site-packages/django/db/models/manager.py&#34;</span>, line 82, in manager_method
+    <span style="font-weight:bold">return</span> getattr(self.get_queryset(), name)(*args, **kwargs)
+  File <span style="font-style:italic">&#34;/Users/jtr109/mystuff/learn/django-update-or-create-example/venv/lib/python3.7/site-packages/django/db/models/query.py&#34;</span>, line 538, in get_or_create
+    <span style="font-weight:bold">return</span> self.get(**kwargs), False
+  File <span style="font-style:italic">&#34;/Users/jtr109/mystuff/learn/django-update-or-create-example/venv/lib/python3.7/site-packages/django/db/models/query.py&#34;</span>, line 412, in get
+    (self.model._meta.object_name, num)
+race.models.Race.MultipleObjectsReturned: get() returned more than one Race -- it returned 2!
+
+Exception in thread Thread-9:
+Traceback (most recent call last):
+  File <span style="font-style:italic">&#34;/Users/jtr109/.pyenv/versions/3.7.4/lib/python3.7/threading.py&#34;</span>, line 926, in _bootstrap_inner
+    self.run()
+  File <span style="font-style:italic">&#34;/Users/jtr109/.pyenv/versions/3.7.4/lib/python3.7/threading.py&#34;</span>, line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File <span style="font-style:italic">&#34;/Users/jtr109/mystuff/learn/django-update-or-create-example/race/tests.py&#34;</span>, line 20, in get_or_create
+    defaults=dict(name=<span style="font-style:italic">&#39;foo&#39;</span>, age=1),
+  File <span style="font-style:italic">&#34;/Users/jtr109/mystuff/learn/django-update-or-create-example/venv/lib/python3.7/site-packages/django/db/models/manager.py&#34;</span>, line 82, in manager_method
+    <span style="font-weight:bold">return</span> getattr(self.get_queryset(), name)(*args, **kwargs)
+  File <span style="font-style:italic">&#34;/Users/jtr109/mystuff/learn/django-update-or-create-example/venv/lib/python3.7/site-packages/django/db/models/query.py&#34;</span>, line 538, in get_or_create
+    <span style="font-weight:bold">return</span> self.get(**kwargs), False
+  File <span style="font-style:italic">&#34;/Users/jtr109/mystuff/learn/django-update-or-create-example/venv/lib/python3.7/site-packages/django/db/models/query.py&#34;</span>, line 412, in get
+    (self.model._meta.object_name, num)
+race.models.Race.MultipleObjectsReturned: get() returned more than one Race -- it returned 2!
+
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.107s
+
+OK
+Destroying test database <span style="font-weight:bold">for</span> alias <span style="font-style:italic">&#39;default&#39;</span>...
+</code></pre></div><p><em>由于使用 <code>threading</code> 实现并发, 所以不一定每次执行都会出现如上状况. 如果没有复现, 请重试几次.</em></p>
+<p>从上面的信息可以看到, 数据库中生成了不止一个条目, 而且有的 threading 在执行时报 <code>get() returned more than one Race</code> 错误.</p>
+<h2 id="原因分析">原因分析</h2>
+<p>查看 <a href="https://github.com/django/django/blob/2.2.6/django/db/models/query.py#L528"><code>get_or_create</code></a> 源码可以看到, 这个操作分为两步: 查询和创建. 所以在异步场景下, 可能出现多个读操作都没有查到条目, 触发 <code>DoesNotExist</code> 报错, 写入多条, 而非预期中的始终只有一条.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="font-weight:bold">def</span> get_or_create(self, defaults=None, **kwargs):
+    <span style="font-style:italic">&#34;&#34;&#34;
+</span><span style="font-style:italic">    Look up an object with the given kwargs, creating one if necessary.
+</span><span style="font-style:italic">    Return a tuple of (object, created), where created is a boolean
+</span><span style="font-style:italic">    specifying whether an object was created.
+</span><span style="font-style:italic">    &#34;&#34;&#34;</span>
+    <span style="font-style:italic"># The get() needs to be targeted at the write database in order</span>
+    <span style="font-style:italic"># to avoid potential transaction consistency problems.</span>
+    self._for_write = True
+    <span style="font-weight:bold">try</span>:
+        <span style="font-weight:bold">return</span> self.get(**kwargs), False
+    <span style="font-weight:bold">except</span> self.model.DoesNotExist:
+        params = self._extract_model_params(defaults, **kwargs)
+        <span style="font-weight:bold">return</span> self._create_object_from_params(kwargs, params)
+</code></pre></div><h2 id="解决方案">解决方案</h2>
+<p>这个问题其实在文档中<a href="https://docs.djangoproject.com/en/dev/ref/models/querysets/#get-or-create">已经指出</a>:</p>
+<blockquote>
+<p>This method is atomic assuming that the database enforces uniqueness of the keyword arguments (see <a href="https://docs.djangoproject.com/en/dev/ref/models/fields/#django.db.models.Field.unique"><code>unique</code></a> or <a href="https://docs.djangoproject.com/en/dev/ref/models/options/#django.db.models.Options.unique_together"><code>unique_together</code></a>). If the fields used in the keyword arguments do not have a uniqueness constraint, concurrent calls to this method may result in multiple rows with the same parameters being inserted.</p>
+</blockquote>
+<p>所以如果希望避免条目冲突, 需要将 <code>get_or_create</code> 参照的列设置为 unique. 对于多列参照的情况, 必须保证 <code>unique_together</code>.</p>
+<p>以 <code>Race</code>为例进行改造:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="font-style:italic"># models.py</span>
+
+<span style="font-weight:bold">class</span> <span style="font-weight:bold">Solution</span>(models.Model):
+    user_id = models.CharField(max_length=32, unique=True)  <span style="font-style:italic"># declaring `user_id` uniqueness</span>
+    name = models.CharField(max_length=32)
+</code></pre></div><p>补充一个 <code>unique_together</code> 示例:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="font-style:italic"># models.py</span>
+
+<span style="font-weight:bold">class</span> <span style="font-weight:bold">Together</span>(models.Model):
+    user_id = models.CharField(max_length=32)
+    name = models.CharField(max_length=32)
+    age = models.PositiveIntegerField()
+
+    <span style="font-weight:bold">class</span> <span style="font-weight:bold">Meta</span>:
+        unique_together = [
+            <span style="font-style:italic"># declaring the combination of `user_id` and `name` is unique</span>
+            [<span style="font-style:italic">&#39;user_id&#39;</span>, <span style="font-style:italic">&#39;name&#39;</span>],
+        ]
+
+</code></pre></div><p>完整示例可以参考<a href="https://github.com/jtr109/django-update-or-create-example">示例项目</a></p>
+<h2 id="源码分析">源码分析</h2>
+<p>在源码中是如何使用 <code>translation.atom</code> 解决这个错误的, 待后续分析.</p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jtr109" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        
+        
+      </footer>
+    </article>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/startup.js" id="MathJax-script"></script>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [
+          ['$', '$'], ['\\(', '\\)']
+        ],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  </section>
+
+      </div>
+
+      
+  <footer class="footer">
+    <section class="container">
+      
+        <p>Welcome to My Castle.</p>
+      
+      
+        ©
+        
+        2020
+         jtr109 
+      
+      
+         · 
+        Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+      
+      
+    </section>
+  </footer>
+
+    </main>
+
+    
+
+    
+
+    
+
+  </body>
+
+</html>

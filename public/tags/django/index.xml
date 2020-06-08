@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>django on jtr109&#39;s Castle</title>
+    <link>https://jtr109.github.io/tags/django/</link>
+    <description>Recent content in django on jtr109&#39;s Castle</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 09 Nov 2019 22:09:45 +0000</lastBuildDate>
+    
+	<atom:link href="https://jtr109.github.io/tags/django/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Django `get_or_create` 创建重复条目问题分析和处理</title>
+      <link>https://jtr109.github.io/posts/race-condition-when-using-django-get-or-create/</link>
+      <pubDate>Sat, 09 Nov 2019 22:09:45 +0000</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/race-condition-when-using-django-get-or-create/</guid>
+      <description>名词解释  Data Race &amp;amp; Race Condition: 待补充, 可参考这个 StackOverflow 回答  问题描述 Django 的 ORM 操作中有一个非常实用的功能: get_or_create, 可以判断数据库中是否有符合条件的条目, 没有则创建.
+但是在使用过程中如果不加留意, 会发生 race condition. 导致数据库中创建出的条目不符合预期.
+以下面这部分代码为例:
+# models.py class Race(models.Model): user_id = models.CharField(max_length=32) name = models.CharField(max_length=32) 如果在项目中调用遇到了并发的情况, 会导致数据库中有一条以上的相同条目. 可以编写单元测试复现该问题:
+# tests.py class RaceTestCase(TestCase): def test_race(self): def get_or_create(): Race.objects.get_or_create( user_id=&amp;#39;c53b8ba212ef4f15b2365e1bb3d524fe&amp;#39;, defaults=dict(name=&amp;#39;foo&amp;#39;, age=1), ) threads = list() for _ in range(10): threads.append(threading.Thread(target=get_or_create)) for t in threads: t.start() for t in threads: t.join() self.</description>
+    </item>
+    
+    <item>
+      <title>Intergate Vue in Django</title>
+      <link>https://jtr109.github.io/posts/intergrate-vue-in-django/</link>
+      <pubDate>Fri, 31 May 2019 14:08:00 +0800</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/intergrate-vue-in-django/</guid>
+      <description>Intergate Vue in Django What Project Will We Build We want to build a vue project with multiple pages. The Django view render these pages as templates.
+Why We Build Such A Project If we seperate frond-end and back-end and all routers are handled by the front-end project. The attackers can fake the reponse of authentication and jump to the target pages. If the attackers get the front-end code all in one package without authentication, they can parse out API easily.</description>
+    </item>
+    
+    <item>
+      <title>Hashers Issue When Upgrade Django</title>
+      <link>https://jtr109.github.io/posts/hashers-issue-when-upgrade-django/</link>
+      <pubDate>Sun, 02 Sep 2018 11:11:23 +0800</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/hashers-issue-when-upgrade-django/</guid>
+      <description>Note for check_password in Django
+Background We are refactoring our project from Django 1.9.10 to a new project with Django 1.11.14 and asyncpg for database connections.
+I tried to fork the logic of User.check_password and create an async one. But the new one does not work as my wrong exception. But I learn something from that at least.
+Different behavior of User.check_password between objects from fixture and created manual I found when I use the official check_password on a user object from fixtures, the value of the object changed.</description>
+    </item>
+    
+  </channel>
+</rss>

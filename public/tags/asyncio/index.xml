@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>asyncio on jtr109&#39;s Castle</title>
+    <link>https://jtr109.github.io/tags/asyncio/</link>
+    <description>Recent content in asyncio on jtr109&#39;s Castle</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 24 Aug 2018 07:08:11 +0800</lastBuildDate>
+    
+	<atom:link href="https://jtr109.github.io/tags/asyncio/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Asyncio Note</title>
+      <link>https://jtr109.github.io/posts/asyncio-note/</link>
+      <pubDate>Fri, 24 Aug 2018 07:08:11 +0800</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/asyncio-note/</guid>
+      <description>Starting async function without await Async function in asyncio cannot start directly. It should be wrapped in asyncio.create_task.
+The asyncio.ensure_future can also be used. But
+ create_task() (added in Python 3.7) is the preferable way for spawning new tasks.
+ Call usual function asynchronously with event loop  start on next tick: loop.call_soon(func) delay for some time before start: loop.call_later(delay, func) start at a time: loop.call_at(when, func)  See in asyncio event loop.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>flask on jtr109&#39;s Castle</title>
+    <link>https://jtr109.github.io/tags/flask/</link>
+    <description>Recent content in flask on jtr109&#39;s Castle</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 13 Aug 2017 14:06:44 +0800</lastBuildDate>
+    
+	<atom:link href="https://jtr109.github.io/tags/flask/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>关于flask-sqlalchemy中数据库操作的问题整理</title>
+      <link>https://jtr109.github.io/posts/flask-sqlalchemy-database-problems/</link>
+      <pubDate>Sun, 13 Aug 2017 14:06:44 +0800</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/flask-sqlalchemy-database-problems/</guid>
+      <description>此文为本人原创，最早发布于求助《Flask Web 开发》第五章关于数据库db.session.add()和db.session.commit()问题。
+问题简述：
+ 当加入了SQLALCHEMY_COMMIT_ON_TEARDOWN=True，在什么情况下仍然要执行db.session.commit()
+ 解答整理如下：
+config是在app/__init__.py中调用的，所以执行model.py中的方法时，SQLALCHEMY_COMMIT_ON_TEARDOWN = True已经生效了。即请求结束后自动commit。
+后面几个章节中出现db.session.commit()的主要作用都是为了生成id来使用。
+你可以结合源码看一下。
+session的原理就请参考Flask 源码阅读笔记。
+SQLALCHEMY_ON_TEARDOWN在flask-sqlalchemy 2.0之后已经被删除了，需要用SQLALCHEMY_TRACK_MODIFICATIONS替代，想必你运行的时候应该看到过相关提示。
+参考文章：Flask-SQLAlchemy 配置问题
+这个新熟悉我还没掌握，抽空看下documentation再来分析。
+继续回到SQLALCHEMY_ON_TEARDOWN。按照书上的说法：
+ 将其设为True时，每次请求结束后都会自动提交数据库中的变动。
+ 因为v1.0的如果这里的documentation已经找不到了，没有依据，我就在这推测一下：
+只有当请求结束的时候，才会自动commit，而直接操作数据库是不行的，需要手动commit。
+回到model.py中看，insert_roles()被@staticmethod包装，是一个静态方法，它执行的位置是在python manage.py shell中，而非请求中，所以需要手动commit。
+你可以验证一下，方法也很简单，保证写入SQLALCHEMY_ON_TEARDONW=True后，在shell中尝试：
+&amp;gt;&amp;gt;&amp;gt; user = User(username=&#39;test&#39;) &amp;gt;&amp;gt;&amp;gt; db.session.add(user) &amp;gt;&amp;gt;&amp;gt; quit()  再次进入shell，查找&amp;lt;User u&#39;test&#39;&amp;gt;，不存在，即推断合理：shell中执行的用于操作数据库的方法还是要加commit。</description>
+    </item>
+    
+    <item>
+      <title>flask 数据库迁移与部署的一些经验</title>
+      <link>https://jtr109.github.io/posts/flask-database-deploy/</link>
+      <pubDate>Sun, 13 Aug 2017 13:04:28 +0800</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/flask-database-deploy/</guid>
+      <description>最早发布于flask开发的第五章关于创建迁移脚本的问题(已解决) - cocode.cc。内容并不完善，基本不会再维护.
+分享一点经验，主要是自己的理解，希望能有所帮助。千辛万苦部署好的数据库，就不为了答题一一验证了，全凭记忆回答，有不对的地方欢迎指出，会及时修改。
+以下内容以执行文件名为manage.py举例，请自行调整。
+  影响 migrate 的是数据库的结构。
+ 比方说你的 User 类中添加了一个 Column - nickname ，那么在保存 Model 之后建议执行 python manage.py db migrate -m &amp;quot;add nickname； 而给 table 加入了新的方法，例如 def change_nick_name() ，是不需要 migrate 的。如果 migrate ，结果也是 No change； 这一点可以留意一下，比较保险的办法是觉得有必要的时候就尝试一下 migrate，反正 No changes 对你的迁移也没有影响。    在创建本地数据库的时候，不要在 py shell 环境下执行 db.create_all()
+ 请使用python manage.py db init, python manage.py db upgrade 来创建本地数据库。 通常我会模仿书本上在上面两条指令之间再做一次migrate，但经验告诉我，结果好像都是No changes，毕竟，我init之后没有做过调整啊。 init指令会根据Model.py中的结构创建迁移文件夹migrations，而upgrade会根据migrations下的内容，通过config.py在找到正确的位置，并创建SQL，并在SQL中创建一个名为versions的table来存放和迁移文件夹中相同的版本号。（重要） 在开始的尝试中，特别是往heroku上部署的过程中，经常会遇到许多数据库的坑，如果实在走投无路，又确定是数据库迁移问题，并且无法优雅地解决。你需要做的就是以下几步： (1). 休息一下，我知道你很累了 (2). 执行python manage.</description>
+    </item>
+    
+  </channel>
+</rss>

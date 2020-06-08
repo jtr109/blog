@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>security on jtr109&#39;s Castle</title>
+    <link>https://jtr109.github.io/tags/security/</link>
+    <description>Recent content in security on jtr109&#39;s Castle</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 07 Jan 2020 23:45:24 +0000</lastBuildDate>
+    
+	<atom:link href="https://jtr109.github.io/tags/security/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>一次性密码</title>
+      <link>https://jtr109.github.io/posts/one-time-password/</link>
+      <pubDate>Tue, 07 Jan 2020 23:45:24 +0000</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/one-time-password/</guid>
+      <description>背景 很多大型网站都提供了一种动态数字密码作为两步认证（2FA）的方案。你只要通过常用的密码管理器（例如 1Password，Authy 等）扫描二维码，就可以获得一个动态数字 token。我们来一起探索一下这门技术。
+TOTP TOTP 即 Time-Based One-Time Password Algorithm。顾名思义这是一种基于时间的 token 算法，从宏观来看就是基于时间和共享的密钥（shared secret key）生成随机数字 token。
+与之类似的算法还有HOTP（Event-Based One-Time Password Algorithm）。
+Google Authenticator Google Authenticator 也是一种 TOTP，只不过它的 secret key 必须使用 base32 的1。
+Rust Implement  Google Authenticator Rust：一个非常简介易用的 crate，但是示例都存在着一些问题，可用示例可以参考我的 fork2； rust-oath：使用数最多的相关 crate，功能全面；  Have A Try  在项目中尝试了生成 secret （secret.rs），生成二维码（qr_code.rs）以及生成 token（code.rs）。  Reference       Google Authenticator 的特殊性参考这个项目中的说明 &amp;#x21a9;&amp;#xfe0e;
+ 已提交 pull request &amp;#x21a9;&amp;#xfe0e;
+   </description>
+    </item>
+    
+    <item>
+      <title>在 Git 托管服务中使用两步验证能力</title>
+      <link>https://jtr109.github.io/posts/git-with-2fa/</link>
+      <pubDate>Thu, 14 Nov 2019 14:06:16 +0000</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/git-with-2fa/</guid>
+      <description>写在最前 作为开发者, 应该清楚地知道 &amp;ldquo;密码再强也不是不可能被破解&amp;rdquo;, 所以只要网站支持 2FA, 就建议在自己的帐号中配置 2FA 支持.
+在 GitLab 中使用 2FA GitLab 中如何开启 2FA 在文档中写得比较清晰, 而且其中推荐了几种可选的 one time password authenticators.
+但是按照这个方案操作完之后, 如果你的项目通过 https 指定远程 git 仓库地址, 你的 git 终端会要求你重新登录. 如果你足够耐心, 其实可以在页面下方找到解决方案.
+ When 2FA is enabled, you can no longer use your normal account password to authenticate with Git over HTTPS on the command line or when using GitLab’s API. You must use a personal access token instead.</description>
+    </item>
+    
+  </channel>
+</rss>

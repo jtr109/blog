@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+
+    <meta name="author" content="jtr109">
+    <meta name="description" content="Antfin phone interview 今天参加了蚂蚁金服的电话面试, 自己实力不济, 加之没想到晚上会突然打电话过来, 几乎没有准备, 表现非常不理想. 不过还是把面试题目和 review 的答案整理出来, 也算是一点收获.
+二维数组查找 问题: 一个二维数组, 每行递增, 每列递减. 如何定位一个值.
+答案:
+a = [ [4, 8, 12, 16], [3, 7, 11, 15], [2, 6, 10, 14], [1, 5, 9, 13], ] def get(arr, target): # TODO: 这里没有考虑该值不存在的情况 r, c = 0, 0 while True: guess = arr[r][c] if guess == target: return (r, c) elif guess &lt; target: c &#43;= 1 else: r &#43;= 1 get(a, 5) # (3, 1) 合并两个有序数组 问题: 如何合并两个有序数组">
+    <meta name="keywords" content="blog,developer,personal">
+
+    
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Antfin Interview"/>
+<meta name="twitter:description" content="Antfin phone interview 今天参加了蚂蚁金服的电话面试, 自己实力不济, 加之没想到晚上会突然打电话过来, 几乎没有准备, 表现非常不理想. 不过还是把面试题目和 review 的答案整理出来, 也算是一点收获.
+二维数组查找 问题: 一个二维数组, 每行递增, 每列递减. 如何定位一个值.
+答案:
+a = [ [4, 8, 12, 16], [3, 7, 11, 15], [2, 6, 10, 14], [1, 5, 9, 13], ] def get(arr, target): # TODO: 这里没有考虑该值不存在的情况 r, c = 0, 0 while True: guess = arr[r][c] if guess == target: return (r, c) elif guess &lt; target: c &#43;= 1 else: r &#43;= 1 get(a, 5) # (3, 1) 合并两个有序数组 问题: 如何合并两个有序数组"/>
+
+    <meta property="og:title" content="Antfin Interview" />
+<meta property="og:description" content="Antfin phone interview 今天参加了蚂蚁金服的电话面试, 自己实力不济, 加之没想到晚上会突然打电话过来, 几乎没有准备, 表现非常不理想. 不过还是把面试题目和 review 的答案整理出来, 也算是一点收获.
+二维数组查找 问题: 一个二维数组, 每行递增, 每列递减. 如何定位一个值.
+答案:
+a = [ [4, 8, 12, 16], [3, 7, 11, 15], [2, 6, 10, 14], [1, 5, 9, 13], ] def get(arr, target): # TODO: 这里没有考虑该值不存在的情况 r, c = 0, 0 while True: guess = arr[r][c] if guess == target: return (r, c) elif guess &lt; target: c &#43;= 1 else: r &#43;= 1 get(a, 5) # (3, 1) 合并两个有序数组 问题: 如何合并两个有序数组" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jtr109.github.io/posts/antfin-interview/" />
+<meta property="article:published_time" content="2018-09-12T21:51:16+08:00" />
+<meta property="article:modified_time" content="2018-09-12T21:51:16+08:00" />
+
+
+    
+      <base href="https://jtr109.github.io/posts/antfin-interview/">
+    
+    <title>
+  Antfin Interview · jtr109&#39;s Castle
+</title>
+
+    
+      <link rel="canonical" href="https://jtr109.github.io/posts/antfin-interview/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://jtr109.github.io/css/coder.min.3219ef62ae52679b7a9c19043171c3cd9f523628c2a65f3ef247ee18836bc90b.css" integrity="sha256-MhnvYq5SZ5t6nBkEMXHDzZ9SNijCpl8&#43;8kfuGINryQs=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://jtr109.github.io/css/custom.css" />
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://jtr109.github.io/favicon/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://jtr109.github.io/favicon/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.72.0" />
+  </head>
+
+  
+  
+  <body class="colorscheme-light"
+        onload=""
+  >
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://jtr109.github.io/">
+      jtr109&#39;s Castle
+    </a>
+    
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jtr109.github.io/posts/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jtr109.github.io/categories/">Categories</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jtr109.github.io/tags/">Tags</a>
+          </li>
+        
+      
+      
+    </ul>
+    
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Antfin Interview</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2018-09-12T21:51:16&#43;08:00'>
+                September 12, 2018
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              3-minute read
+            </span>
+          </div>
+          
+          
+        </div>
+      </header>
+
+      <div>
+        
+        <h2 id="antfin-phone-interview">Antfin phone interview</h2>
+<p><em>今天参加了蚂蚁金服的电话面试, 自己实力不济, 加之没想到晚上会突然打电话过来, 几乎没有准备, 表现非常不理想. 不过还是把面试题目和 review 的答案整理出来, 也算是一点收获.</em></p>
+<h3 id="二维数组查找">二维数组查找</h3>
+<p>问题: 一个二维数组, 每行递增, 每列递减. 如何定位一个值.</p>
+<p>答案:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">a = [
+    [4, 8, 12, 16],
+    [3, 7, 11, 15],
+    [2, 6, 10, 14],
+    [1, 5, 9,  13],
+]
+
+<span style="font-weight:bold">def</span> get(arr, target):
+    <span style="font-style:italic"># TODO: 这里没有考虑该值不存在的情况</span>
+    r, c = 0, 0
+    <span style="font-weight:bold">while</span> True:
+        guess = arr[r][c]
+        <span style="font-weight:bold">if</span> guess == target:
+            <span style="font-weight:bold">return</span> (r, c)
+        <span style="font-weight:bold">elif</span> guess &lt; target:
+            c += 1
+        <span style="font-weight:bold">else</span>:
+            r += 1
+
+get(a, 5)  <span style="font-style:italic"># (3, 1)</span>
+</code></pre></div><h3 id="合并两个有序数组">合并两个有序数组</h3>
+<p>问题: 如何合并两个有序数组</p>
+<p>答案:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="font-weight:bold">def</span> merge(l1, l2):
+    tmp = list()
+    i, j = 0, 0
+    <span style="font-weight:bold">while</span> i &lt; len(l1) <span style="font-weight:bold">and</span> j &lt; len(l2):
+        <span style="font-weight:bold">if</span> l1[i] &lt; l2[j]:
+            tmp.append(l1[i])
+            i += 1
+        <span style="font-weight:bold">elif</span> l1[i] &gt; l2[j]:
+            tmp.append(l2[j])
+            j += 1
+        <span style="font-weight:bold">else</span>:
+            tmp.extend((l1[i], l2[j]))
+            i += 1
+            j += 1
+    tmp.extend(l1[i:])
+    tmp.extend(l2[j:])
+    <span style="font-weight:bold">return</span> tmp
+</code></pre></div><p>进一步问: 如果其中一个 list 足够放下两个数组, 不借助第三个数组排序, 要求复杂度为常量.</p>
+<p>例如:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">l1 = [1, 3, 5, None, None, None]
+l2 = [2, 4]
+</code></pre></div><p>个人回答靠右排序在第一个数组中. 应该不是正确答案, 稍后求证.</p>
+<h3 id="gil-锁的意义">GIL 锁的意义</h3>
+<p>参见<a href="https://github.com/taizilongxu/interview_python#18-gil%E7%BA%BF%E7%A8%8B%E5%85%A8%E5%B1%80%E9%94%81">这篇文章</a></p>
+<ul>
+<li>Python 为了保证线程安全而采取的独立线程运行的限制,说白了就是一个核只能在同一时间运行一个线程.</li>
+<li>对于io密集型任务, python的多线程起到作用, 但对于cpu密集型任务, python的多线程几乎占不到任何优势, 还有可能因为争夺资源而变慢.</li>
+</ul>
+<p>追问: coroutine 为什么能解决 GIL 的性能问题?</p>
+<p>回答:</p>
+<p>GIL 的大致逻辑是使用系统自身的分时复用机制实现并发. GIL 能解决的问题是 wait simulaneously, 即 IO 等待时间过长, 会切换执行其他线程. 但是如果对于计算量大, 每个线程有比较大的变量存在时, GIL 的机制会导致计算到一半的线程被暂停, 如内存等资源的竞争, context 的切换成本都对性能造成非常大的影响. 导致基于 GIL 的并发使用场景并不广泛.</p>
+<p>而 coroutine 的好处在于把切换的时机交给协程自己, 使协程在合适的时机被暂停和上下文切换.</p>
+<p>简而言之:</p>
+<ul>
+<li>GIL 在 IO 密集型的场景中没有太大性能问题</li>
+<li>但是在计算密集型的场景中会由于 context switching 的问题导致性能大打折扣</li>
+<li>coroutine stack 由解释器自身维护, 可以更好地掌握切换时机</li>
+</ul>
+<p>参考文章: <a href="http://yosefk.com/blog/working-simultaneously-vs-waiting-simultaneously.html">Working simultanously vs waiting simultaneously</a></p>
+<h3 id="哪些字段加-db-index">哪些字段加 db index?</h3>
+<ul>
+<li>
+<p>简要的索引介绍在<a href="https://www.jianshu.com/p/4c2a2b0ef3e0">这里</a></p>
+</li>
+<li>
+<p>延伸阅读可以查看<a href="http://blog.codinglabs.org/articles/theory-of-mysql-index.html">这篇文章</a></p>
+</li>
+<li>
+<p>如果一个字段频繁出现在 WHERE 子句中, 那么它应该被添加索引</p>
+</li>
+<li>
+<p>尽量使用唯一索引而非全文索引</p>
+</li>
+<li>
+<p>索引可以加快查询的速度, 但是在表的数据变化时, 索引的动态维护会降低速度</p>
+</li>
+</ul>
+<h3 id="查询数据库的时候哪些字段放在前面">查询数据库的时候哪些字段放在前面?</h3>
+<ul>
+<li>优先较少结果</li>
+<li>优先 index</li>
+<li>优先 <code>=</code></li>
+</ul>
+<h3 id="iterable-和-iterator-的区别">iterable 和 iterator 的区别</h3>
+<p>关于 iterator 和 iterable 的区别在 <a href="https://wiki.python.org/moin/Iterator">python wiki</a> 中有解答:</p>
+<blockquote>
+<p>An <strong>iterable</strong> object is an object that implements <code>__iter__</code>, which is expected to return an <strong>iterator</strong> object.
+An <strong>iterator</strong> is an object that implements <code>next</code>, which is expected to return the next element of the iterable object that returned it, and raise a <code>StopIteration</code> exception when no more elements are available.</p>
+</blockquote>
+<p>我们以文章中的示例来 review 一下:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="font-weight:bold">import</span> <span style="font-weight:bold">random</span>
+
+<span style="font-weight:bold">class</span> <span style="font-weight:bold">RandomIterable</span>(object):
+    <span style="font-weight:bold">def</span> __iter__(self):
+        <span style="font-weight:bold">return</span> self
+    <span style="font-weight:bold">def</span> __next__(self):
+        <span style="font-weight:bold">if</span> random.choice([<span style="font-style:italic">&#39;go&#39;</span>, <span style="font-style:italic">&#39;go&#39;</span>, <span style="font-style:italic">&#39;stop&#39;</span>]) == <span style="font-style:italic">&#39;stop&#39;</span>:
+            <span style="font-weight:bold">raise</span> StopIteraion
+        <span style="font-weight:bold">return</span> 1
+
+r = RandomIterable()
+next(r)
+</code></pre></div><p>这里的 <code>RandomIterable</code> 就是一个 iterable. 他的 <code>__iter__</code> 方法返回了自身的实例 <code>r</code>, 这个实例就是一个 iterator. 实例必须定义了 <code>__next__</code> 方法. 调用内置函数 <code>next</code> 就可以获取下一个返回值.</p>
+<blockquote>
+<p>An object isn&rsquo;t iterable unless it provides <strong>iter</strong>. And for an object to be a valid iterator, it must provide next.</p>
+</blockquote>
+<h3 id="扩展思考-generator-的定义">扩展思考: generator 的定义</h3>
+<p>关于 generator 的定义在<a href="https://wiki.python.org/moin/Generators">这里</a>可以了解:</p>
+<blockquote>
+<p>Generator functions allow you to declare a function that behaves like an iterator, i.e. it can be used in a for loop.</p>
+</blockquote>
+<p>看了这句话应该很明显了, <code>range</code> 就是一个典型的 generator.</p>
+<p>推荐使用 <code>yield</code> 实现, 例如:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="font-weight:bold">def</span> yrange(n):
+    i = 0
+    <span style="font-weight:bold">while</span> i &lt; n:
+        <span style="font-weight:bold">yield</span> i
+        i += 1
+</code></pre></div><p>Reference in <a href="https://anandology.com/python-practice-book/iterators.html">Python Practic Book</a>.</p>
+<h3 id="http-请求结构">http 请求结构</h3>
+<p>参考<a href="http://www.runoob.com/http/http-messages.html">网页</a></p>
+<p>客户端发送一个 HTTP 请求到服务器的请求消息包括以下格式: 请求行（request line）, 请求头部（header）, 空行和请求数据四个部分组成.</p>
+<p>补充: HTTP 响应也由四个部分组成，分别是: 状态行, 消息报头, 空行和响应正文.</p>
+<h3 id="数据库缓存的方式">数据库缓存的方式</h3>
+<ul>
+<li>redis 缓存会遇到的问题及解决方法可以参考<a href="https://juejin.im/post/5b961172f265da0ab7198f4d">这篇文章</a></li>
+</ul>
+<h3 id="redis-缓存数据库数据的结构">redis 缓存数据库数据的结构</h3>
+<p>可以参考<a href="https://blog.csdn.net/qtyl1988/article/details/39519951">这篇文章</a>学习一下.</p>
+<p>redis 的主要数据结构有:</p>
+<ul>
+<li>hash</li>
+<li>string</li>
+<li>list</li>
+<li>set</li>
+<li>sorted set</li>
+</ul>
+<p>数据库的结构归根结底是以行存储的, 所以适合的结构是 string and hash.</p>
+<p>一个比较直观的想法, 就是将数据转化为 json 格式, 以 string 结构存储在 redis 中.</p>
+<h4 id="延伸问题-每条数据的-key-如何指定">延伸问题: 每条数据的 key 如何指定</h4>
+<p>可以通过查询语句的内容作为 key, 但是不应该直接使用该字符串, 一个显而易见的原因是 SQL 中有空格. 可以使用 MD5 等方式生成唯一标识符.</p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jtr109" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        
+        
+      </footer>
+    </article>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/startup.js" id="MathJax-script"></script>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [
+          ['$', '$'], ['\\(', '\\)']
+        ],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  </section>
+
+      </div>
+
+      
+  <footer class="footer">
+    <section class="container">
+      
+        <p>Welcome to My Castle.</p>
+      
+      
+        ©
+        
+        2020
+         jtr109 
+      
+      
+         · 
+        Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+      
+      
+    </section>
+  </footer>
+
+    </main>
+
+    
+
+    
+
+    
+
+  </body>
+
+</html>

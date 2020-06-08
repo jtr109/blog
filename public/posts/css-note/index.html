@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+
+    <meta name="author" content="jtr109">
+    <meta name="description" content="居中 1. 文字居中  水平居中: text-align: center 垂直居中: vertical-align: middle  2. div 居中 div 居中是一个比较坑的实现, 没有什么特别优秀的办法, 这里只举部分较实用的例子.
+具体方法可以参考知乎上的这一篇回答, 这里暂时只介绍其中 absolute 的使用.
+2.1 absolute 居中 // 假设我们要做一个 200px 见方的 div .middle { position: absolute; width: 200px; height: 200px; top: 50%; left: 50%; margin-top: -100px; margin-left: -100px; background: red; } 这是一个比较稳妥的实现, 这里很明显, 是通过 top: 50% 来实现的垂直居中, 不过如果单单使用 top=50%, 会发现 div 的顶部位于父级元素 50% 位置处, 所以需要使用 margin-top=-100px 来实现元素的便宜. 该示例中的水平居中方法同理.
+如果在确认设置无误的情况下, 发现 div 的位置不对, 请检查父级是否正确设置了 position: relative.">
+    <meta name="keywords" content="blog,developer,personal">
+
+    
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="css 学习笔记"/>
+<meta name="twitter:description" content="居中 1. 文字居中  水平居中: text-align: center 垂直居中: vertical-align: middle  2. div 居中 div 居中是一个比较坑的实现, 没有什么特别优秀的办法, 这里只举部分较实用的例子.
+具体方法可以参考知乎上的这一篇回答, 这里暂时只介绍其中 absolute 的使用.
+2.1 absolute 居中 // 假设我们要做一个 200px 见方的 div .middle { position: absolute; width: 200px; height: 200px; top: 50%; left: 50%; margin-top: -100px; margin-left: -100px; background: red; } 这是一个比较稳妥的实现, 这里很明显, 是通过 top: 50% 来实现的垂直居中, 不过如果单单使用 top=50%, 会发现 div 的顶部位于父级元素 50% 位置处, 所以需要使用 margin-top=-100px 来实现元素的便宜. 该示例中的水平居中方法同理.
+如果在确认设置无误的情况下, 发现 div 的位置不对, 请检查父级是否正确设置了 position: relative."/>
+
+    <meta property="og:title" content="css 学习笔记" />
+<meta property="og:description" content="居中 1. 文字居中  水平居中: text-align: center 垂直居中: vertical-align: middle  2. div 居中 div 居中是一个比较坑的实现, 没有什么特别优秀的办法, 这里只举部分较实用的例子.
+具体方法可以参考知乎上的这一篇回答, 这里暂时只介绍其中 absolute 的使用.
+2.1 absolute 居中 // 假设我们要做一个 200px 见方的 div .middle { position: absolute; width: 200px; height: 200px; top: 50%; left: 50%; margin-top: -100px; margin-left: -100px; background: red; } 这是一个比较稳妥的实现, 这里很明显, 是通过 top: 50% 来实现的垂直居中, 不过如果单单使用 top=50%, 会发现 div 的顶部位于父级元素 50% 位置处, 所以需要使用 margin-top=-100px 来实现元素的便宜. 该示例中的水平居中方法同理.
+如果在确认设置无误的情况下, 发现 div 的位置不对, 请检查父级是否正确设置了 position: relative." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jtr109.github.io/posts/css-note/" />
+<meta property="article:published_time" content="2017-08-13T12:30:45+08:00" />
+<meta property="article:modified_time" content="2017-08-13T12:30:45+08:00" />
+
+
+    
+      <base href="https://jtr109.github.io/posts/css-note/">
+    
+    <title>
+  css 学习笔记 · jtr109&#39;s Castle
+</title>
+
+    
+      <link rel="canonical" href="https://jtr109.github.io/posts/css-note/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://jtr109.github.io/css/coder.min.3219ef62ae52679b7a9c19043171c3cd9f523628c2a65f3ef247ee18836bc90b.css" integrity="sha256-MhnvYq5SZ5t6nBkEMXHDzZ9SNijCpl8&#43;8kfuGINryQs=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://jtr109.github.io/css/custom.css" />
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://jtr109.github.io/favicon/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://jtr109.github.io/favicon/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.72.0" />
+  </head>
+
+  
+  
+  <body class="colorscheme-light"
+        onload=""
+  >
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://jtr109.github.io/">
+      jtr109&#39;s Castle
+    </a>
+    
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jtr109.github.io/posts/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jtr109.github.io/categories/">Categories</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jtr109.github.io/tags/">Tags</a>
+          </li>
+        
+      
+      
+    </ul>
+    
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">css 学习笔记</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2017-08-13T12:30:45&#43;08:00'>
+                August 13, 2017
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              1-minute read
+            </span>
+          </div>
+          
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="https://jtr109.github.io/tags/css/">css</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        
+        <h2 id="居中">居中</h2>
+<h3 id="1-文字居中">1. 文字居中</h3>
+<ul>
+<li>水平居中: <code>text-align: center</code></li>
+<li>垂直居中: <code>vertical-align: middle</code></li>
+</ul>
+<h3 id="2-div-居中">2. div 居中</h3>
+<p><em>div 居中是一个比较坑的实现, 没有什么特别优秀的办法, 这里只举部分较实用的例子.</em></p>
+<p>具体方法可以参考<a href="https://zhihu.com/question/20543196/answer/89218605">知乎上的这一篇回答</a>, 这里暂时只介绍其中 absolute 的使用.</p>
+<h4 id="21-absolute-居中">2.1 absolute 居中</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">// <span style="font-weight:bold">假设我们要做一个</span> <span style="font-weight:bold">200px</span> <span style="font-weight:bold">见方的</span> <span style="font-weight:bold">div</span>
+.<span style="font-weight:bold">middle</span> {
+  <span style="font-weight:bold">position</span>: <span style="font-weight:bold">absolute</span>;
+  <span style="font-weight:bold">width</span>: 200<span style="">px</span>;
+  <span style="font-weight:bold">height</span>: 200<span style="">px</span>;
+  <span style="font-weight:bold">top</span>: 50<span style="">%</span>;
+  <span style="font-weight:bold">left</span>: 50<span style="">%</span>;
+  <span style="font-weight:bold">margin-top</span>: -100<span style="">px</span>; 
+  <span style="font-weight:bold">margin-left</span>: -100<span style="">px</span>;
+  <span style="font-weight:bold">background</span>: <span style="font-weight:bold">red</span>;
+}
+</code></pre></div><p>这是一个比较稳妥的实现, 这里很明显, 是通过 <code>top: 50%</code> 来实现的垂直居中, 不过如果单单使用 <code>top=50%</code>, 会发现 div 的顶部位于父级元素 50% 位置处, 所以需要使用 <code>margin-top=-100px</code> 来实现元素的便宜. 该示例中的水平居中方法同理.</p>
+<p>如果在确认设置无误的情况下, 发现 div 的位置不对, 请检查父级是否正确设置了 <code>position: relative</code>.</p>
+<h2 id="scss">SCSS</h2>
+<p>SCSS 的 <a href="https://sass-lang.com/guide#topic-2">variable</a> 和 <a href="https://sass-lang.com/guide#topic-6">mixin</a> 在生产的应用比较广泛, 具体使用方法可以直接参考<a href="https://sass-lang.com/guide">官方文档</a>.</p>
+<h2 id="文字省略">文字省略</h2>
+<p>文字省略的方法可谓千奇百怪, 这里介绍两种常用的方式, 分别对应单行省略和多行省略.</p>
+<h3 id="单行省略">单行省略</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css"><span style="font-weight:bold">overflow</span>: <span style="font-weight:bold">hidden</span>;
+<span style="font-weight:bold">text-overflow</span>: <span style="font-weight:bold">ellipsis</span>;
+<span style="font-weight:bold">white-space</span>: <span style="font-weight:bold">nowrap</span>;
+</code></pre></div><h3 id="多行省略">多行省略</h3>
+<p>以2行省略为例:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css"><span style="font-weight:bold">overflow</span>: <span style="font-weight:bold">hidden</span>;
+<span style="font-weight:bold">text-overflow</span>: <span style="font-weight:bold">ellipsis</span>;
+<span style="font-weight:bold">display</span>: <span style="font-weight:bold">-webkit-box</span>;
+<span style="font-weight:bold">-webkit-line-clamp</span>: <span style="font-weight:bold">2</span>;
+<span style="font-weight:bold">-webkit-box-orient</span>: <span style="font-weight:bold">vertical</span>;
+</code></pre></div><h3 id="结合-scss-mixins-使用">结合 SCSS mixins 使用</h3>
+<p>多行省略需要使用的场景比较广泛, 然而每种行数都写一个对应的类, 这样也不够优雅. 比较推荐的做法就是把它和 SCSS mixins 结合起来:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">@<span style="font-weight:bold">mixin</span> <span style="font-weight:bold">multiple-lines</span> ($<span style="font-weight:bold">count</span>) {
+  <span style="font-weight:bold">overflow</span>: <span style="font-weight:bold">hidden</span>;
+  <span style="font-weight:bold">text-overflow</span>: <span style="font-weight:bold">ellipsis</span>;
+  <span style="font-weight:bold">display</span>: <span style="font-weight:bold">-webkit-box</span>;
+  <span style="font-weight:bold">-webkit-line-clamp</span>: $<span style="font-weight:bold">count</span>;
+  <span style="font-weight:bold">-webkit-box-orient</span>: <span style="font-weight:bold">vertical</span>;
+}
+
+.<span style="font-weight:bold">two-lines</span> {
+  <span style="">@include</span> <span style="">multiple-lines(2)</span>;
+}
+</code></pre></div>
+      </div>
+
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jtr109" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        
+        
+      </footer>
+    </article>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/startup.js" id="MathJax-script"></script>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [
+          ['$', '$'], ['\\(', '\\)']
+        ],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  </section>
+
+      </div>
+
+      
+  <footer class="footer">
+    <section class="container">
+      
+        <p>Welcome to My Castle.</p>
+      
+      
+        ©
+        
+        2020
+         jtr109 
+      
+      
+         · 
+        Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+      
+      
+    </section>
+  </footer>
+
+    </main>
+
+    
+
+    
+
+    
+
+  </body>
+
+</html>

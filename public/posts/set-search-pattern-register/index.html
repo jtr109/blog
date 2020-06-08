@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+
+    <meta name="author" content="jtr109">
+    <meta name="description" content="In English Highlight the search pattern register in VIM.
+实现的目的 有的时候会遇到这样一个场景. 在当前文件中调用了一个函数, 而这个函数在另一个文件中被定义. 如果有 jedi 之类的神器帮助跳转当然再好不过, 不过如果项目足够复杂, 有的时候 jedi 还是力不从心的. 当这时, 我们的目标可能就变成:
+将光标下的单词能在另一个文件下通过最简单的方式定位到.
+简单做法 最简单的做法, 当然是在 normal mode 下使用 * 把搜索寄存器中的内容更新为光标下的单词. 但是这么做的问题是, 如果该页还有其他匹配项, 就会发生一次跳转. 需要使用 &lt;c-o&gt; 跳转回刚刚的位置.
+然后 :b# 切换到另一个文件 (希望你和我一样设置了映射, 我的是 &lt;leader-b&gt;). 文件切换我们这里不做展开.
+这样的做法比较简单, 但是不够优雅.
+存储到搜索寄存器 那么问题就简单了 &ndash; 怎样可以更新搜索寄存器.
+通过 :h registers 可以了解到:
+10. Last search pattern register	&#34;/	*quote_/* *quote/* Contains the most recent search-pattern. This is used for &#34;n&#34; and &#39;hlsearch&#39;.">
+    <meta name="keywords" content="blog,developer,personal">
+
+    
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="在 VIM 中赋值搜索寄存器"/>
+<meta name="twitter:description" content="In English Highlight the search pattern register in VIM.
+实现的目的 有的时候会遇到这样一个场景. 在当前文件中调用了一个函数, 而这个函数在另一个文件中被定义. 如果有 jedi 之类的神器帮助跳转当然再好不过, 不过如果项目足够复杂, 有的时候 jedi 还是力不从心的. 当这时, 我们的目标可能就变成:
+将光标下的单词能在另一个文件下通过最简单的方式定位到.
+简单做法 最简单的做法, 当然是在 normal mode 下使用 * 把搜索寄存器中的内容更新为光标下的单词. 但是这么做的问题是, 如果该页还有其他匹配项, 就会发生一次跳转. 需要使用 &lt;c-o&gt; 跳转回刚刚的位置.
+然后 :b# 切换到另一个文件 (希望你和我一样设置了映射, 我的是 &lt;leader-b&gt;). 文件切换我们这里不做展开.
+这样的做法比较简单, 但是不够优雅.
+存储到搜索寄存器 那么问题就简单了 &ndash; 怎样可以更新搜索寄存器.
+通过 :h registers 可以了解到:
+10. Last search pattern register	&#34;/	*quote_/* *quote/* Contains the most recent search-pattern. This is used for &#34;n&#34; and &#39;hlsearch&#39;."/>
+
+    <meta property="og:title" content="在 VIM 中赋值搜索寄存器" />
+<meta property="og:description" content="In English Highlight the search pattern register in VIM.
+实现的目的 有的时候会遇到这样一个场景. 在当前文件中调用了一个函数, 而这个函数在另一个文件中被定义. 如果有 jedi 之类的神器帮助跳转当然再好不过, 不过如果项目足够复杂, 有的时候 jedi 还是力不从心的. 当这时, 我们的目标可能就变成:
+将光标下的单词能在另一个文件下通过最简单的方式定位到.
+简单做法 最简单的做法, 当然是在 normal mode 下使用 * 把搜索寄存器中的内容更新为光标下的单词. 但是这么做的问题是, 如果该页还有其他匹配项, 就会发生一次跳转. 需要使用 &lt;c-o&gt; 跳转回刚刚的位置.
+然后 :b# 切换到另一个文件 (希望你和我一样设置了映射, 我的是 &lt;leader-b&gt;). 文件切换我们这里不做展开.
+这样的做法比较简单, 但是不够优雅.
+存储到搜索寄存器 那么问题就简单了 &ndash; 怎样可以更新搜索寄存器.
+通过 :h registers 可以了解到:
+10. Last search pattern register	&#34;/	*quote_/* *quote/* Contains the most recent search-pattern. This is used for &#34;n&#34; and &#39;hlsearch&#39;." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jtr109.github.io/posts/set-search-pattern-register/" />
+<meta property="article:published_time" content="2017-10-25T20:07:41+08:00" />
+<meta property="article:modified_time" content="2017-10-25T20:07:41+08:00" />
+
+
+    
+      <base href="https://jtr109.github.io/posts/set-search-pattern-register/">
+    
+    <title>
+  在 VIM 中赋值搜索寄存器 · jtr109&#39;s Castle
+</title>
+
+    
+      <link rel="canonical" href="https://jtr109.github.io/posts/set-search-pattern-register/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://jtr109.github.io/css/coder.min.3219ef62ae52679b7a9c19043171c3cd9f523628c2a65f3ef247ee18836bc90b.css" integrity="sha256-MhnvYq5SZ5t6nBkEMXHDzZ9SNijCpl8&#43;8kfuGINryQs=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://jtr109.github.io/css/custom.css" />
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://jtr109.github.io/favicon/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://jtr109.github.io/favicon/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.72.0" />
+  </head>
+
+  
+  
+  <body class="colorscheme-light"
+        onload=""
+  >
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://jtr109.github.io/">
+      jtr109&#39;s Castle
+    </a>
+    
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jtr109.github.io/posts/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jtr109.github.io/categories/">Categories</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jtr109.github.io/tags/">Tags</a>
+          </li>
+        
+      
+      
+    </ul>
+    
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">在 VIM 中赋值搜索寄存器</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2017-10-25T20:07:41&#43;08:00'>
+                October 25, 2017
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              2-minute read
+            </span>
+          </div>
+          
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="https://jtr109.github.io/tags/vim/">vim</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        
+        <h2 id="in-english">In English</h2>
+<p>Highlight the search pattern register in VIM.</p>
+<h2 id="实现的目的">实现的目的</h2>
+<p>有的时候会遇到这样一个场景. 在当前文件中调用了一个函数, 而这个函数在另一个文件中被定义. 如果有 <a href="https://github.com/davidhalter/jedi-vim">jedi</a> 之类的神器帮助跳转当然再好不过, 不过如果项目足够复杂, 有的时候 jedi 还是力不从心的. 当这时, 我们的目标可能就变成:</p>
+<p><em>将光标下的单词能在另一个文件下通过最简单的方式定位到.</em></p>
+<h2 id="简单做法">简单做法</h2>
+<p>最简单的做法, 当然是在 normal mode 下使用 <code>*</code> 把搜索寄存器中的内容更新为光标下的单词. 但是这么做的问题是, 如果该页还有其他匹配项, 就会发生一次跳转. 需要使用 <code>&lt;c-o&gt;</code> 跳转回刚刚的位置.</p>
+<p>然后 <code>:b#</code> 切换到另一个文件 (希望你和我一样设置了映射, 我的是 <code>&lt;leader-b&gt;</code>). 文件切换我们这里不做展开.</p>
+<p><em>这样的做法比较简单, 但是不够优雅.</em></p>
+<h2 id="存储到搜索寄存器">存储到搜索寄存器</h2>
+<p>那么问题就简单了 &ndash; 怎样可以更新搜索寄存器.</p>
+<p>通过 <code>:h registers</code> 可以了解到:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">10. Last search pattern register	&#34;/		*quote_/* *quote/*
+Contains the most recent search-pattern.  This is used for &#34;n&#34; and &#39;hlsearch&#39;.
+It is writable with `:let`, you can change it to have &#39;hlsearch&#39; highlight
+other matches without actually searching.  You can&#39;t yank or delete into this
+register.  The search direction is available in |v:searchforward|.
+</code></pre></div><p>这里可以看到搜索寄存器是可以通过 <code>:let</code> 来修改的. 那具体该怎么修改呢? 参见 <code>:h let-register</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">:let @{reg-name} = {expr1}			*:let-register* *:let-@*
+			Write the result of the expression {expr1} in register
+			{reg-name}.  {reg-name} must be a single letter, and
+			must be the name of a writable register (see
+			|registers|).  &#34;@@&#34; can be used for the unnamed
+			register, &#34;@/&#34; for the search pattern.
+			If the result of {expr1} ends in a &lt;CR&gt; or &lt;NL&gt;, the
+			register will be linewise, otherwise it will be set to
+			characterwise.
+			This can be used to clear the last search pattern: &gt;
+				:let @/ = &#34;&#34;
+&lt;			This is different from searching for an empty string,
+			that would match everywhere.
+</code></pre></div><p>那就好办了, 手动处理的话用两种方法:</p>
+<ul>
+<li><code>:let @/ &lt;C-r&gt;&lt;C-w&gt;</code>.</li>
+<li><code>:let @/='\&lt;'.expand(&quot;&lt;cword&gt;&quot;).'\&gt;'</code></li>
+</ul>
+<h2 id="将指令保存在-macro-中来调用">将指令保存在 macro 中来调用</h2>
+<p>建议可以存到 macro 中. 这里也不特意展开了, 给一个例子, 设置 <code>@m</code> 为寄存动作:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">qm  # 打开 m macro 的记录功能
+:let @/ &lt;c-r&gt;&lt;c-w&gt;  # 或 `:let @/=&#39;\&lt;&#39;.expand(&#34;&lt;cword&gt;&#34;).&#39;\&gt;&#39;`
+q  # 关闭记录
+</code></pre></div><p>之后只要调用 <code>@m</code> 就可以将当前光标下的文字存储到搜索寄存器中. 一个直观的测试方式, <code>:set hlsearch</code> 打开你的搜索高亮, 用 <code>@m</code> 试试吧!</p>
+<h2 id="使用-nmap-映射为永久可用的快捷键">使用 <code>nmap</code> 映射为永久可用的快捷键</h2>
+<p>但是 macro 有一个问题就是随时可能被替代, 那 map 或许是一个好的解决方式.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vim" data-lang="vim">:nnoremap &lt;Leader&gt;m :<span style="font-weight:bold">let</span> @/=<span style="font-style:italic">&#39;\&lt;&#39;</span>.expand(<span style="font-style:italic">&#34;&lt;cword&gt;&#34;</span>).<span style="font-style:italic">&#39;\&gt;&#39;</span>&lt;CR&gt;<span style="">
+</span><span style=""></span># 或者<span style="">
+</span><span style=""></span>:nnoremap &lt;Leader&gt;m :<span style="font-weight:bold">let</span> @/=<span style="font-style:italic">&#39;&lt;C-r&gt;&lt;C-w&gt;&#39;</span>&lt;CR&gt;<span style="">
+</span></code></pre></div>
+      </div>
+
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jtr109" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        
+        
+      </footer>
+    </article>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/startup.js" id="MathJax-script"></script>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [
+          ['$', '$'], ['\\(', '\\)']
+        ],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  </section>
+
+      </div>
+
+      
+  <footer class="footer">
+    <section class="container">
+      
+        <p>Welcome to My Castle.</p>
+      
+      
+        ©
+        
+        2020
+         jtr109 
+      
+      
+         · 
+        Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+      
+      
+    </section>
+  </footer>
+
+    </main>
+
+    
+
+    
+
+    
+
+  </body>
+
+</html>

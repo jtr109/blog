@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mysql on jtr109&#39;s Castle</title>
+    <link>https://jtr109.github.io/tags/mysql/</link>
+    <description>Recent content in mysql on jtr109&#39;s Castle</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 13 Aug 2017 14:08:41 +0800</lastBuildDate>
+    
+	<atom:link href="https://jtr109.github.io/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Install MySQLdb in virtualenv，从入门到放弃</title>
+      <link>https://jtr109.github.io/posts/mysqldb-installation-in-virtualenv/</link>
+      <pubDate>Sun, 13 Aug 2017 14:08:41 +0800</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/mysqldb-installation-in-virtualenv/</guid>
+      <description>本人使用的是OSX，在安装MySQLdb的过程中遇到不少坑，和大家分享一下，也为以后留存。只是做一个整理，并不会有太多个人心得。多以评注为主。
+MySQL Server 密码重置  本机环境 Mac OS X EI Capitan 官网 Community 版 MySQL Server 虚拟环境 virtualenv pwd: /User/jtr109/qs/
+ 密码重置的方式多种多样，用很多我尝试之后这个是我唯一可行的，和我有相同环境、情况的朋友可以参考：数据库之mac上mysql root密码忘记或权限错误的解决办法。
+遇到这个问题主要是我装MySQL的时候不专心，传说官方dmg装完后是会提示设定密码的，不知道怎么回事，反正我本地的MySQL Server就完全进不去了，只能改密码。这篇文章讲的非常清晰，简单易懂，不做过多评论。只要每一步照做就好。此文最大的优点是不用终端运行MySQL Server，也不用考虑 kill 进程，非常适合刚刚接触相关内容的朋友。
+安装 MySQLdb 首先进入你需要的路径，我们以 /User/jtr109/qs/ 为例。执行 virtualenv venv 创建虚拟环境包， source venv/bin/activate 进入虚拟环境。
+注意安装模块名 我不知道为什么这个模块叫 MySQLdb，import 语句也是 import MySQLdb。但是你要注意，pip 安装语句为： pip install MySQL-python。千万不要写错。不过因为你在虚拟环境，所以玩脱了就这个环境包删了就好。这也是我为什么推崇为每个项目创建虚拟环境的原因之一。
+修改 _mysql.so 追踪路径 现在你可以试着进入 python， 然后运行：
+&amp;gt;&amp;gt;&amp;gt; import MySQLdb Traceback (most recent call last): File &amp;quot;&amp;lt;stdin&amp;gt;&amp;quot;, line 1, in &amp;lt;module&amp;gt; File &amp;quot;/Users/jtr109/qs/venv/lib/python2.</description>
+    </item>
+    
+    <item>
+      <title>Mysql Dump 笔记</title>
+      <link>https://jtr109.github.io/posts/mysql-dump-note/</link>
+      <pubDate>Sun, 13 Aug 2017 14:04:20 +0800</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/mysql-dump-note/</guid>
+      <description>目前的配置环境均为 Windows，其他环境会在稍后补充
+1. 全量备份 2. 增量备份及恢复 2.1 备份 2.1.1 启用二进制备份 开启 binlog 日志 mysql -hlocalhost -uroot -pjue -e &amp;#34;set global sql_log_bin=1&amp;#34;; mysql -hlocalhost -uroot -pjue -e &amp;#34;show global variables like &amp;#39;sql_log_bin&amp;#39;\G&amp;#34;; 实测需要将 global 替换为 session
+在系统 MySQL 配置文件 my.ini 中加入（修改）存储 log-bin 的位置 log-bin=D:/Program Files (x86)/MySQL/mylog/jlog 2.1.2 重启 MySQL 服务 2.1.3 执行一次全量备份 $ mysqldump -hlocalhost -uroot -p -l -F test &amp;gt; testtt.sql 全量备份除了新建 sql 备份意外，还会新建一个 binlog 文件，完成后可以删除早先的 binlog 文件。 转移全量备份的 sql 并保存。</description>
+    </item>
+    
+  </channel>
+</rss>

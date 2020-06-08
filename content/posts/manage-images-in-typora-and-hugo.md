@@ -1,8 +1,12 @@
 ---
 title: "在 Typora 和 Hugo 中正确显示图片"
 date: 2020-06-07T19:48:37+08:00
-draft: true
+draft: false
 typora-root-url: ../../static
+tags:
+  - typora
+  - hugo
+  - blog
 ---
 
 ## 背景

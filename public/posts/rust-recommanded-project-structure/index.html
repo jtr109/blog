@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+
+    <meta name="author" content="jtr109">
+    <meta name="description" content="Background The Cargo Book recommand the package layout of rust project. Here is an example project implemented with it.
+. ├── Cargo.lock ├── Cargo.toml ├── benches │ └── large-input.rs ├── examples │ └── simple.rs ├── src │ ├── bin │ │ └── another_executable.rs │ ├── lib.rs │ └── main.rs └── tests └── some-integration-tests.rs Lib The elements want be used outside should start with pub (which means publish) in src/lib.rs.
+pub fn hello(s: &amp;str) -&gt; String { format!">
+    <meta name="keywords" content="blog,developer,personal">
+
+    
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Rust Recommanded Project Structure"/>
+<meta name="twitter:description" content="Background The Cargo Book recommand the package layout of rust project. Here is an example project implemented with it.
+. ├── Cargo.lock ├── Cargo.toml ├── benches │ └── large-input.rs ├── examples │ └── simple.rs ├── src │ ├── bin │ │ └── another_executable.rs │ ├── lib.rs │ └── main.rs └── tests └── some-integration-tests.rs Lib The elements want be used outside should start with pub (which means publish) in src/lib.rs.
+pub fn hello(s: &amp;str) -&gt; String { format!"/>
+
+    <meta property="og:title" content="Rust Recommanded Project Structure" />
+<meta property="og:description" content="Background The Cargo Book recommand the package layout of rust project. Here is an example project implemented with it.
+. ├── Cargo.lock ├── Cargo.toml ├── benches │ └── large-input.rs ├── examples │ └── simple.rs ├── src │ ├── bin │ │ └── another_executable.rs │ ├── lib.rs │ └── main.rs └── tests └── some-integration-tests.rs Lib The elements want be used outside should start with pub (which means publish) in src/lib.rs.
+pub fn hello(s: &amp;str) -&gt; String { format!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jtr109.github.io/posts/rust-recommanded-project-structure/" />
+<meta property="article:published_time" content="2020-01-06T22:51:41+00:00" />
+<meta property="article:modified_time" content="2020-01-06T22:51:41+00:00" />
+
+
+    
+      <base href="https://jtr109.github.io/posts/rust-recommanded-project-structure/">
+    
+    <title>
+  Rust Recommanded Project Structure · jtr109&#39;s Castle
+</title>
+
+    
+      <link rel="canonical" href="https://jtr109.github.io/posts/rust-recommanded-project-structure/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://jtr109.github.io/css/coder.min.3219ef62ae52679b7a9c19043171c3cd9f523628c2a65f3ef247ee18836bc90b.css" integrity="sha256-MhnvYq5SZ5t6nBkEMXHDzZ9SNijCpl8&#43;8kfuGINryQs=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://jtr109.github.io/css/custom.css" />
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://jtr109.github.io/favicon/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://jtr109.github.io/favicon/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.72.0" />
+  </head>
+
+  
+  
+  <body class="colorscheme-light"
+        onload=""
+  >
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://jtr109.github.io/">
+      jtr109&#39;s Castle
+    </a>
+    
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jtr109.github.io/posts/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jtr109.github.io/categories/">Categories</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jtr109.github.io/tags/">Tags</a>
+          </li>
+        
+      
+      
+    </ul>
+    
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Rust Recommanded Project Structure</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2020-01-06T22:51:41Z'>
+                January 6, 2020
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              2-minute read
+            </span>
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="https://jtr109.github.io/categories/tech/">tech</a></div>
+
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="https://jtr109.github.io/tags/rust/">rust</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        
+        <h2 id="background">Background</h2>
+<p><a href="https://doc.rust-lang.org/cargo/index.html">The Cargo Book</a> recommand the <a href="https://doc.rust-lang.org/cargo/guide/project-layout.html#package-layout">package layout</a> of rust project. Here is <a href="https://github.com/jtr109/rust-play/tree/recommand-structure">an example project</a> implemented with it.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">.
+├── Cargo.lock
+├── Cargo.toml
+├── benches
+│   └── large-input.rs
+├── examples
+│   └── simple.rs
+├── src
+│   ├── bin
+│   │   └── another_executable.rs
+│   ├── lib.rs
+│   └── main.rs
+└── tests
+    └── some-integration-tests.rs
+</code></pre></div><!-- raw HTML omitted -->
+<h2 id="lib">Lib</h2>
+<p>The elements want be used outside should start with <code>pub</code> (which means <strong>publish</strong>) in <code>src/lib.rs</code>.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="font-weight:bold">pub</span> <span style="font-weight:bold">fn</span> hello(s: <span style="">&amp;</span><span style="">str</span>) -&gt; String {
+    format!(<span style="font-style:italic">&#34;hello, {}&#34;</span>, s)
+}
+</code></pre></div><h2 id="main">Main</h2>
+<p>The <code>src/lib.rs</code> can be used as a module in project.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="font-style:italic">// src/main.rs
+</span><span style="font-style:italic"></span><span style="font-weight:bold">mod</span> <span style="font-weight:bold">lib</span>;
+
+<span style="font-weight:bold">use</span> lib::hello;
+
+<span style="font-weight:bold">fn</span> main() {
+    println!(<span style="font-style:italic">&#34;{}&#34;</span>, hello(<span style="font-style:italic">&#34;main&#34;</span>));
+}
+</code></pre></div><p>You can get expected result by running with <code>play</code>, the package name in this example.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">❯ cargo run --bin play
+    Finished dev [unoptimized + debuginfo] target(s) in 0.00s
+     Running <span style="font-style:italic">`</span>target/debug/play<span style="font-style:italic">`</span>
+hello, main
+</code></pre></div><h2 id="bin">Bin</h2>
+<p>It is easy to create other executables by adding them in directory <code>src/bin</code>. Cargo will find all executables in it. So it is unnecessary to config <code>Cargo.toml</code> like <a href="https://stackoverflow.com/a/26946705/6522746">that</a>.</p>
+<p>But there are some difference from <code>src/main.rs</code> that we cannot find module named <code>lib</code> in the scope of <code>src/bin/another_executable.rs</code>.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="font-style:italic">// src/bin/another_executable.rs
+</span><span style="font-style:italic"></span><span style="font-weight:bold">mod</span> <span style="font-weight:bold">lib</span>; <span style="font-style:italic">// not work!
+</span><span style="font-style:italic"></span>
+<span style="font-weight:bold">use</span> lib::hello;
+
+<span style="font-weight:bold">fn</span> main() {
+    println!(<span style="font-style:italic">&#34;{}&#34;</span>, hello(<span style="font-style:italic">&#34;another_executable&#34;</span>));
+}
+</code></pre></div><p>If we try code above, we will get errors below:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">❯ cargo check
+    Checking play v0.1.0 (/Users/jtr109/mystuff/learn/rust/play)
+error[E0583]: file not found <span style="font-weight:bold">for</span> module <span style="font-style:italic">`</span>lib<span style="font-style:italic">`</span>
+ --&gt; src/bin/another_executable.rs:5:5
+  |
+5 | mod lib;
+  |     ^^^
+  |
+  = help: name the file either lib.rs or lib/mod.rs inside the directory <span style="font-style:italic">&#34;src/bin&#34;</span>
+
+error: aborting due to previous error
+
+For more information about this error, try <span style="font-style:italic">`</span>rustc --explain E0583<span style="font-style:italic">`</span>.
+error: could not compile <span style="font-style:italic">`</span>play<span style="font-style:italic">`</span>.
+warning: build failed, waiting <span style="font-weight:bold">for</span> other jobs to finish...
+error: build failed
+</code></pre></div><p>We need to use <code>src/lib.rs</code> as an extern crate:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="font-style:italic">// src/bin/another_executable.rs
+</span><span style="font-style:italic"></span><span style="font-weight:bold">extern</span> <span style="font-weight:bold">crate</span> play;
+
+<span style="font-weight:bold">use</span> play::hello;
+
+<span style="font-weight:bold">fn</span> main() {
+    println!(<span style="font-style:italic">&#34;{}&#34;</span>, hello(<span style="font-style:italic">&#34;another_executable&#34;</span>));
+}
+</code></pre></div><p>And it will works well:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">❯ cargo run --bin another_executable
+   Compiling play v0.1.0 (/Users/jtr109/mystuff/learn/rust/play)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.37s
+     Running <span style="font-style:italic">`</span>target/debug/another_executable<span style="font-style:italic">`</span>
+hello, another_executable
+</code></pre></div><h2 id="tests">Tests</h2>
+<p>It is similar with using <code>src/lib.rs</code> in <code>src/bin</code>.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="font-style:italic">// tests/some-integration-tests.rs
+</span><span style="font-style:italic"></span><span style="font-weight:bold">extern</span> <span style="font-weight:bold">crate</span> play;
+
+<span style="font-weight:bold">use</span> play::hello;
+
+<span style="">#[test]</span>
+<span style="font-weight:bold">fn</span> test_hello() {
+    assert_eq!(<span style="font-style:italic">&#34;hello, foo&#34;</span>, hello(<span style="font-style:italic">&#34;foo&#34;</span>));
+}
+</code></pre></div>
+      </div>
+
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jtr109" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        
+        
+      </footer>
+    </article>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/startup.js" id="MathJax-script"></script>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [
+          ['$', '$'], ['\\(', '\\)']
+        ],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  </section>
+
+      </div>
+
+      
+  <footer class="footer">
+    <section class="container">
+      
+        <p>Welcome to My Castle.</p>
+      
+      
+        ©
+        
+        2020
+         jtr109 
+      
+      
+         · 
+        Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+      
+      
+    </section>
+  </footer>
+
+    </main>
+
+    
+
+    
+
+    
+
+  </body>
+
+</html>

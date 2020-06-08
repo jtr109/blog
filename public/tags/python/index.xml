@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>python on jtr109&#39;s Castle</title>
+    <link>https://jtr109.github.io/tags/python/</link>
+    <description>Recent content in python on jtr109&#39;s Castle</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 27 Nov 2019 17:27:14 +0000</lastBuildDate>
+    
+	<atom:link href="https://jtr109.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Pip Install From Git Repositories</title>
+      <link>https://jtr109.github.io/posts/about-pip-install/</link>
+      <pubDate>Wed, 27 Nov 2019 17:27:14 +0000</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/about-pip-install/</guid>
+      <description>包安装 问题 在公司项目开发过程中, 我们构建了一些自定义的 Python packages. 如果直接使用如下方式安装, 可以正常使用, 但是 pip freeze 的时候只会显示包名称和版本. 无法在实际生产中使用.
+$ pip install git+https://git.example.com/example/foo.git ... $ pip freeze &amp;gt; requirements.txt $ cat requirements.txt dm-utils==1.0 解决方案 需要参考这个 issue实现:
+$ pip install -e git+https://git.example.com/example/foo.git#egg=0.0.1 $ pip freeze &amp;gt; requirements.txt $ cat requirements.txt -e git+https://git.example.com/example/foo.git@2c2ed2b3df2084d1b1ebfa87c9fe703072eded7b#egg=dm_utils Docker Build 上面的示例可以解决大部分 public 项目的拉取和安装问题, 但如果在 private 项目中使用上面的方案, 在 docker build 时会报错, 原因是构建镜像的时候, 镜像中没有我们的 git 用户信息, 无法拉取私有仓库.
+需要向项目仓库所有者请求一个 deploy token, 使用提供的用户名和 token 执行 pip install, 例如:</description>
+    </item>
+    
+    <item>
+      <title>Django `get_or_create` 创建重复条目问题分析和处理</title>
+      <link>https://jtr109.github.io/posts/race-condition-when-using-django-get-or-create/</link>
+      <pubDate>Sat, 09 Nov 2019 22:09:45 +0000</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/race-condition-when-using-django-get-or-create/</guid>
+      <description>名词解释  Data Race &amp;amp; Race Condition: 待补充, 可参考这个 StackOverflow 回答  问题描述 Django 的 ORM 操作中有一个非常实用的功能: get_or_create, 可以判断数据库中是否有符合条件的条目, 没有则创建.
+但是在使用过程中如果不加留意, 会发生 race condition. 导致数据库中创建出的条目不符合预期.
+以下面这部分代码为例:
+# models.py class Race(models.Model): user_id = models.CharField(max_length=32) name = models.CharField(max_length=32) 如果在项目中调用遇到了并发的情况, 会导致数据库中有一条以上的相同条目. 可以编写单元测试复现该问题:
+# tests.py class RaceTestCase(TestCase): def test_race(self): def get_or_create(): Race.objects.get_or_create( user_id=&amp;#39;c53b8ba212ef4f15b2365e1bb3d524fe&amp;#39;, defaults=dict(name=&amp;#39;foo&amp;#39;, age=1), ) threads = list() for _ in range(10): threads.append(threading.Thread(target=get_or_create)) for t in threads: t.start() for t in threads: t.join() self.</description>
+    </item>
+    
+    <item>
+      <title>Using Gitlab CI in Project</title>
+      <link>https://jtr109.github.io/posts/using-gitlab-ci-in-project/</link>
+      <pubDate>Fri, 08 Nov 2019 09:44:11 +0000</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/using-gitlab-ci-in-project/</guid>
+      <description>GitLab 的 CI 功能有非常完备的文档, 本文旨在介绍一些常用概念和可能遇到的问题, 帮助大家更好的接入和使用.
+背景 公司项目中有大量 Python 项目构建的微服务, 在合并的过程中需要实现持续集成来获取信息.
+服务搭建 名词解释  Runner: Runner 是任务的执行单元, 实际上就是一个 OS, 它可以是一个主机, 虚拟机 Docker 或者 Kubernetes.  Runner 搭建和配置 Shell Runner 有一个麻烦的问题, 就是所有操作都会影响主机的文件, 依赖等, 而且基于主机 OS 的 runner 导致他是独一无二的, 所以无法实现环境区分. 已经 9102 年了, 建议使用 Docker Runner.
+配置 Runner 调度器 工具文档安装好 Docker CE 和 gitlab-runner, 意味着你拉起了一个 runners 调度器.
+配置 Runner 根据文档触发 Runner 注册:
+docker run --rm -t -i -v /srv/gitlab-runner/config:/etc/gitlab-runner gitlab/gitlab-runner register 注册时需要指定 URL 和 registration token, 可以在项目 Settings -&amp;gt; CI / CD -&amp;gt; Runners 中查到.</description>
+    </item>
+    
+    <item>
+      <title>Python gRPC Json Format 的小坑</title>
+      <link>https://jtr109.github.io/posts/python-grpc-json-format/</link>
+      <pubDate>Thu, 07 Nov 2019 22:31:12 +0000</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/python-grpc-json-format/</guid>
+      <description>背景 最近在开发一个网关项目, 需要将外部的 JSON 请求转换成 gRPC 请求向后转发, 并将 gRPC 响应转换为 JSON 格式的响应返回.
+实现过程中发现使用 google.protobuf.json_format.MessageToDict 的时候 ( google.protobuf.json_format.MessageToJson 同理) 有一些需要注意留意的细节.
+遇到问题 当使用 MessageToDict 对 messge 转换时, 发现两个不符合预期的问题:
+ 如果一个 message field 对应的值为 zero value, 对应的 dict 中不会显示该键值对 field 名称会从 snake_case 被转换成 lowerCamelCase  源码分析 以 MessageToDict 为例, 我们看一下函数的定义.
+def MessageToDict( message, including_default_value_fields=False, preserving_proto_field_name=False, use_integers_for_enums=False, descriptor_pool=None): &amp;#34;&amp;#34;&amp;#34;Converts protobuf message to a dictionary. When the dictionary is encoded to JSON, it conforms to proto3 JSON spec.</description>
+    </item>
+    
+    <item>
+      <title>Intergate Vue in Django</title>
+      <link>https://jtr109.github.io/posts/intergrate-vue-in-django/</link>
+      <pubDate>Fri, 31 May 2019 14:08:00 +0800</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/intergrate-vue-in-django/</guid>
+      <description>Intergate Vue in Django What Project Will We Build We want to build a vue project with multiple pages. The Django view render these pages as templates.
+Why We Build Such A Project If we seperate frond-end and back-end and all routers are handled by the front-end project. The attackers can fake the reponse of authentication and jump to the target pages. If the attackers get the front-end code all in one package without authentication, they can parse out API easily.</description>
+    </item>
+    
+    <item>
+      <title>Hashers Issue When Upgrade Django</title>
+      <link>https://jtr109.github.io/posts/hashers-issue-when-upgrade-django/</link>
+      <pubDate>Sun, 02 Sep 2018 11:11:23 +0800</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/hashers-issue-when-upgrade-django/</guid>
+      <description>Note for check_password in Django
+Background We are refactoring our project from Django 1.9.10 to a new project with Django 1.11.14 and asyncpg for database connections.
+I tried to fork the logic of User.check_password and create an async one. But the new one does not work as my wrong exception. But I learn something from that at least.
+Different behavior of User.check_password between objects from fixture and created manual I found when I use the official check_password on a user object from fixtures, the value of the object changed.</description>
+    </item>
+    
+    <item>
+      <title>Asyncio Note</title>
+      <link>https://jtr109.github.io/posts/asyncio-note/</link>
+      <pubDate>Fri, 24 Aug 2018 07:08:11 +0800</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/asyncio-note/</guid>
+      <description>Starting async function without await Async function in asyncio cannot start directly. It should be wrapped in asyncio.create_task.
+The asyncio.ensure_future can also be used. But
+ create_task() (added in Python 3.7) is the preferable way for spawning new tasks.
+ Call usual function asynchronously with event loop  start on next tick: loop.call_soon(func) delay for some time before start: loop.call_later(delay, func) start at a time: loop.call_at(when, func)  See in asyncio event loop.</description>
+    </item>
+    
+    <item>
+      <title>Install MySQLdb in virtualenv，从入门到放弃</title>
+      <link>https://jtr109.github.io/posts/mysqldb-installation-in-virtualenv/</link>
+      <pubDate>Sun, 13 Aug 2017 14:08:41 +0800</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/mysqldb-installation-in-virtualenv/</guid>
+      <description>本人使用的是OSX，在安装MySQLdb的过程中遇到不少坑，和大家分享一下，也为以后留存。只是做一个整理，并不会有太多个人心得。多以评注为主。
+MySQL Server 密码重置  本机环境 Mac OS X EI Capitan 官网 Community 版 MySQL Server 虚拟环境 virtualenv pwd: /User/jtr109/qs/
+ 密码重置的方式多种多样，用很多我尝试之后这个是我唯一可行的，和我有相同环境、情况的朋友可以参考：数据库之mac上mysql root密码忘记或权限错误的解决办法。
+遇到这个问题主要是我装MySQL的时候不专心，传说官方dmg装完后是会提示设定密码的，不知道怎么回事，反正我本地的MySQL Server就完全进不去了，只能改密码。这篇文章讲的非常清晰，简单易懂，不做过多评论。只要每一步照做就好。此文最大的优点是不用终端运行MySQL Server，也不用考虑 kill 进程，非常适合刚刚接触相关内容的朋友。
+安装 MySQLdb 首先进入你需要的路径，我们以 /User/jtr109/qs/ 为例。执行 virtualenv venv 创建虚拟环境包， source venv/bin/activate 进入虚拟环境。
+注意安装模块名 我不知道为什么这个模块叫 MySQLdb，import 语句也是 import MySQLdb。但是你要注意，pip 安装语句为： pip install MySQL-python。千万不要写错。不过因为你在虚拟环境，所以玩脱了就这个环境包删了就好。这也是我为什么推崇为每个项目创建虚拟环境的原因之一。
+修改 _mysql.so 追踪路径 现在你可以试着进入 python， 然后运行：
+&amp;gt;&amp;gt;&amp;gt; import MySQLdb Traceback (most recent call last): File &amp;quot;&amp;lt;stdin&amp;gt;&amp;quot;, line 1, in &amp;lt;module&amp;gt; File &amp;quot;/Users/jtr109/qs/venv/lib/python2.</description>
+    </item>
+    
+    <item>
+      <title>关于flask-sqlalchemy中数据库操作的问题整理</title>
+      <link>https://jtr109.github.io/posts/flask-sqlalchemy-database-problems/</link>
+      <pubDate>Sun, 13 Aug 2017 14:06:44 +0800</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/flask-sqlalchemy-database-problems/</guid>
+      <description>此文为本人原创，最早发布于求助《Flask Web 开发》第五章关于数据库db.session.add()和db.session.commit()问题。
+问题简述：
+ 当加入了SQLALCHEMY_COMMIT_ON_TEARDOWN=True，在什么情况下仍然要执行db.session.commit()
+ 解答整理如下：
+config是在app/__init__.py中调用的，所以执行model.py中的方法时，SQLALCHEMY_COMMIT_ON_TEARDOWN = True已经生效了。即请求结束后自动commit。
+后面几个章节中出现db.session.commit()的主要作用都是为了生成id来使用。
+你可以结合源码看一下。
+session的原理就请参考Flask 源码阅读笔记。
+SQLALCHEMY_ON_TEARDOWN在flask-sqlalchemy 2.0之后已经被删除了，需要用SQLALCHEMY_TRACK_MODIFICATIONS替代，想必你运行的时候应该看到过相关提示。
+参考文章：Flask-SQLAlchemy 配置问题
+这个新熟悉我还没掌握，抽空看下documentation再来分析。
+继续回到SQLALCHEMY_ON_TEARDOWN。按照书上的说法：
+ 将其设为True时，每次请求结束后都会自动提交数据库中的变动。
+ 因为v1.0的如果这里的documentation已经找不到了，没有依据，我就在这推测一下：
+只有当请求结束的时候，才会自动commit，而直接操作数据库是不行的，需要手动commit。
+回到model.py中看，insert_roles()被@staticmethod包装，是一个静态方法，它执行的位置是在python manage.py shell中，而非请求中，所以需要手动commit。
+你可以验证一下，方法也很简单，保证写入SQLALCHEMY_ON_TEARDONW=True后，在shell中尝试：
+&amp;gt;&amp;gt;&amp;gt; user = User(username=&#39;test&#39;) &amp;gt;&amp;gt;&amp;gt; db.session.add(user) &amp;gt;&amp;gt;&amp;gt; quit()  再次进入shell，查找&amp;lt;User u&#39;test&#39;&amp;gt;，不存在，即推断合理：shell中执行的用于操作数据库的方法还是要加commit。</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>rust on jtr109&#39;s Castle</title>
+    <link>https://jtr109.github.io/tags/rust/</link>
+    <description>Recent content in rust on jtr109&#39;s Castle</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 07 Jan 2020 23:45:24 +0000</lastBuildDate>
+    
+	<atom:link href="https://jtr109.github.io/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>一次性密码</title>
+      <link>https://jtr109.github.io/posts/one-time-password/</link>
+      <pubDate>Tue, 07 Jan 2020 23:45:24 +0000</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/one-time-password/</guid>
+      <description>背景 很多大型网站都提供了一种动态数字密码作为两步认证（2FA）的方案。你只要通过常用的密码管理器（例如 1Password，Authy 等）扫描二维码，就可以获得一个动态数字 token。我们来一起探索一下这门技术。
+TOTP TOTP 即 Time-Based One-Time Password Algorithm。顾名思义这是一种基于时间的 token 算法，从宏观来看就是基于时间和共享的密钥（shared secret key）生成随机数字 token。
+与之类似的算法还有HOTP（Event-Based One-Time Password Algorithm）。
+Google Authenticator Google Authenticator 也是一种 TOTP，只不过它的 secret key 必须使用 base32 的1。
+Rust Implement  Google Authenticator Rust：一个非常简介易用的 crate，但是示例都存在着一些问题，可用示例可以参考我的 fork2； rust-oath：使用数最多的相关 crate，功能全面；  Have A Try  在项目中尝试了生成 secret （secret.rs），生成二维码（qr_code.rs）以及生成 token（code.rs）。  Reference       Google Authenticator 的特殊性参考这个项目中的说明 &amp;#x21a9;&amp;#xfe0e;
+ 已提交 pull request &amp;#x21a9;&amp;#xfe0e;
+   </description>
+    </item>
+    
+    <item>
+      <title>Rust Recommanded Project Structure</title>
+      <link>https://jtr109.github.io/posts/rust-recommanded-project-structure/</link>
+      <pubDate>Mon, 06 Jan 2020 22:51:41 +0000</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/rust-recommanded-project-structure/</guid>
+      <description>Background The Cargo Book recommand the package layout of rust project. Here is an example project implemented with it.
+. ├── Cargo.lock ├── Cargo.toml ├── benches │ └── large-input.rs ├── examples │ └── simple.rs ├── src │ ├── bin │ │ └── another_executable.rs │ ├── lib.rs │ └── main.rs └── tests └── some-integration-tests.rs Lib The elements want be used outside should start with pub (which means publish) in src/lib.rs.
+pub fn hello(s: &amp;amp;str) -&amp;gt; String { format!</description>
+    </item>
+    
+    <item>
+      <title>Rust Serde Json</title>
+      <link>https://jtr109.github.io/posts/rust-serde-json/</link>
+      <pubDate>Tue, 24 Dec 2019 23:34:10 +0000</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/rust-serde-json/</guid>
+      <description>背景 今天学习 The Rust Cookbook 的时候看到一段 JSON 解码的代码:
+#[macro_use] extern crate serde_json; use serde_json::{Value, Error}; fn main() -&amp;gt; Result&amp;lt;(), Error&amp;gt; { let j = r#&amp;#34;{ &amp;#34;userid&amp;#34;: 103609, &amp;#34;verified&amp;#34;: true, &amp;#34;access_privileges&amp;#34;: [ &amp;#34;user&amp;#34;, &amp;#34;admin&amp;#34; ] }&amp;#34;#; let parsed: Value = serde_json::from_str(j)?; let expected = json!({ &amp;#34;userid&amp;#34;: 103609, &amp;#34;verified&amp;#34;: true, &amp;#34;access_privileges&amp;#34;: [ &amp;#34;user&amp;#34;, &amp;#34;admin&amp;#34; ] }); assert_eq!(parsed, expected); Ok(()) } 疑问 这里衍生出一个问题: &amp;ldquo;变量 expected 被一个宏 json! 的结果赋值, 那这个 expected 到底是什么类型?&amp;rdquo;
+查看文档可以了解到这是一个 serde_json::value::Value.</description>
+    </item>
+    
+    <item>
+      <title>Rust Unit Test Example</title>
+      <link>https://jtr109.github.io/posts/rust-unittest-example/</link>
+      <pubDate>Thu, 07 Nov 2019 22:38:24 +0000</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/rust-unittest-example/</guid>
+      <description>起因 一个标准的单元测试写法为:
+pub fn add(a: i32, b: i32) -&amp;gt; i32 { a + b } // This is a really bad adding function, its purpose is to fail in this // example. #[allow(dead_code)] fn bad_add(a: i32, b: i32) -&amp;gt; i32 { a - b } #[cfg(test)] mod tests { // Note this useful idiom: importing names from outer (for mod tests) scope.  use super::*; #[test] fn test_add() { assert_eq!(add(1, 2), 3); } #[test] fn test_bad_add() { // This assert would fire and test will fail.</description>
+    </item>
+    
+    <item>
+      <title>Diesel UUID Problem Note</title>
+      <link>https://jtr109.github.io/posts/diesel-uuid/</link>
+      <pubDate>Thu, 07 Nov 2019 22:36:29 +0000</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/diesel-uuid/</guid>
+      <description>背景描述 在使用 Diesel 和 uuid 开发的过程中, 使用发生报错:
+error[E0277]: the trait bound `uuid::Uuid: diesel::Queryable&amp;lt;diesel::sql_types::Uuid, _&amp;gt;` is not satisfied --&amp;gt; src/models.rs:45:14 | 45 | .load::&amp;lt;App&amp;gt;(conn) | ^^^^ the trait `diesel::Queryable&amp;lt;diesel::sql_types::Uuid, _&amp;gt;` is not implemented for `uuid::Uuid` | = note: required because of the requirements on the impl of `diesel::Queryable&amp;lt;(diesel::sql_types::Uuid, diesel::sql_types::Text), _&amp;gt;` for `(uuid::Uuid, std::string::String)` = note: required because of the requirements on the impl of `diesel::Queryable&amp;lt;(diesel::sql_types::Uuid, diesel::sql_types::Text), _&amp;gt;` for `models::App` = note: required because of the requirements on the impl of `diesel::query_dsl::LoadQuery&amp;lt;_, models::App&amp;gt;` for `diesel::query_builder::SelectStatement&amp;lt;schema::app::table, dies el::query_builder::select_clause::DefaultSelectClause, diesel::query_builder::distinct_clause::NoDistinctClause, diesel::query_builder::where_clause::NoWhereClause, diesel::query _builder::order_clause::NoOrderClause, diesel::query_builder::limit_clause::LimitClause&amp;lt;diesel::expression::bound::Bound&amp;lt;diesel::sql_types::BigInt, i64&amp;gt;&amp;gt;&amp;gt;` 代码如下:</description>
+    </item>
+    
+  </channel>
+</rss>

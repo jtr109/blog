@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>gitlab on jtr109&#39;s Castle</title>
+    <link>https://jtr109.github.io/tags/gitlab/</link>
+    <description>Recent content in gitlab on jtr109&#39;s Castle</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 14 Nov 2019 14:06:16 +0000</lastBuildDate>
+    
+	<atom:link href="https://jtr109.github.io/tags/gitlab/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>在 Git 托管服务中使用两步验证能力</title>
+      <link>https://jtr109.github.io/posts/git-with-2fa/</link>
+      <pubDate>Thu, 14 Nov 2019 14:06:16 +0000</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/git-with-2fa/</guid>
+      <description>写在最前 作为开发者, 应该清楚地知道 &amp;ldquo;密码再强也不是不可能被破解&amp;rdquo;, 所以只要网站支持 2FA, 就建议在自己的帐号中配置 2FA 支持.
+在 GitLab 中使用 2FA GitLab 中如何开启 2FA 在文档中写得比较清晰, 而且其中推荐了几种可选的 one time password authenticators.
+但是按照这个方案操作完之后, 如果你的项目通过 https 指定远程 git 仓库地址, 你的 git 终端会要求你重新登录. 如果你足够耐心, 其实可以在页面下方找到解决方案.
+ When 2FA is enabled, you can no longer use your normal account password to authenticate with Git over HTTPS on the command line or when using GitLab’s API. You must use a personal access token instead.</description>
+    </item>
+    
+    <item>
+      <title>Using Gitlab CI in Project</title>
+      <link>https://jtr109.github.io/posts/using-gitlab-ci-in-project/</link>
+      <pubDate>Fri, 08 Nov 2019 09:44:11 +0000</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/using-gitlab-ci-in-project/</guid>
+      <description>GitLab 的 CI 功能有非常完备的文档, 本文旨在介绍一些常用概念和可能遇到的问题, 帮助大家更好的接入和使用.
+背景 公司项目中有大量 Python 项目构建的微服务, 在合并的过程中需要实现持续集成来获取信息.
+服务搭建 名词解释  Runner: Runner 是任务的执行单元, 实际上就是一个 OS, 它可以是一个主机, 虚拟机 Docker 或者 Kubernetes.  Runner 搭建和配置 Shell Runner 有一个麻烦的问题, 就是所有操作都会影响主机的文件, 依赖等, 而且基于主机 OS 的 runner 导致他是独一无二的, 所以无法实现环境区分. 已经 9102 年了, 建议使用 Docker Runner.
+配置 Runner 调度器 工具文档安装好 Docker CE 和 gitlab-runner, 意味着你拉起了一个 runners 调度器.
+配置 Runner 根据文档触发 Runner 注册:
+docker run --rm -t -i -v /srv/gitlab-runner/config:/etc/gitlab-runner gitlab/gitlab-runner register 注册时需要指定 URL 和 registration token, 可以在项目 Settings -&amp;gt; CI / CD -&amp;gt; Runners 中查到.</description>
+    </item>
+    
+  </channel>
+</rss>

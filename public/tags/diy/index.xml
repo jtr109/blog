@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DIY on jtr109&#39;s Castle</title>
+    <link>https://jtr109.github.io/tags/diy/</link>
+    <description>Recent content in DIY on jtr109&#39;s Castle</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 11 Aug 2017 07:41:21 +0800</lastBuildDate>
+    
+	<atom:link href="https://jtr109.github.io/tags/diy/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hexo 搭建笔记</title>
+      <link>https://jtr109.github.io/posts/hexo-da-jian-bi-ji/</link>
+      <pubDate>Fri, 11 Aug 2017 07:41:21 +0800</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/hexo-da-jian-bi-ji/</guid>
+      <description>项目搭建 项目搭建可以参考这篇 limedroid 的Hexo 博客搭建指南.
+提供一条 bash one line:
+$ hexo clean &amp;amp;&amp;amp; hexo g &amp;amp;&amp;amp; hexo s 上面的代码可以快捷地拉起项目服务器.
+语言设置 如果你和我一样按照上面的文章配置了 Hexo, 你会发现自己的时间文字显示为德语 &amp;ldquo;Veröffentlicht am&amp;rdquo;.
+这是由于默认配置的语言不符. 首先确认 theme/next/languages/ 目录下有 zh-Hans.yml 文件, 另外我们需要将 _config.yml 中配置语言:
+language: zh-Hans 需要注意, 修改好配置文件后请使用 hexo clean &amp;amp;&amp;amp; hexo g &amp;amp;&amp;amp; hexo s 重新编译后再查看效果.
+参考:
+ 使用Hexo踩坑小记 (文章中还有其他使用技巧, 值得学习.)  关于文章更新 通常如果只是修改文章内容, 可以保持 hexo server 出于运行状态, 修改的内容会自动更新到我们本地的 localhost:4000 页面上. 不过在提交文章之前, 请务必再使用 hexo g 重新编译.
+同样提供一条代码:
+$ hexo g &amp;amp;&amp;amp; hexo d 编译报错 在执行 hexo clean &amp;amp;&amp;amp; hexo g &amp;amp;&amp;amp; hexo s 时遇到过这样一个问题:</description>
+    </item>
+    
+  </channel>
+</rss>

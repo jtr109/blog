@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>homebrew on jtr109&#39;s Castle</title>
+    <link>https://jtr109.github.io/tags/homebrew/</link>
+    <description>Recent content in homebrew on jtr109&#39;s Castle</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 18 Oct 2017 10:08:27 +0800</lastBuildDate>
+    
+	<atom:link href="https://jtr109.github.io/tags/homebrew/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Homebrew 自动更新 PostgreSQL 后对应数据库的更新处理</title>
+      <link>https://jtr109.github.io/posts/after-postgresql-upgrade/</link>
+      <pubDate>Wed, 18 Oct 2017 10:08:27 +0800</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/after-postgresql-upgrade/</guid>
+      <description>今天 PostgreSQL 更新到了 10.0, 对于我这样的新手, 可以说是悲喜交加. Server 本身更新了, 但是数据库还是老的, 会导致无法使用的问题. 在这里分享一下数据库的无痛恢复过程.
+问题描述 今天执行 $brew upgrade 的时候, 发现 postgresql 也更新了, 心里生出一丝不详的预感. 打开本地开发的 web 服务:
+$/usr/local/bin/pg_ctl -D /usr/local/var/postgres restart 返回如下
+waiting for server to shut down.... done server stopped waiting for server to start..../bin/sh: /usr/local/Cellar/postgresql/9.6.5/bin/postgres: No such file or directory /bin/sh: line 0: exec: /usr/local/Cellar/postgresql/0.6.5/bin/postgres: cannot execute: No such file or directory stopped waiting pg_ctl: could not start server 于是再运行
+$/usr/local/bin/pg_ctl -D /user/local/var/postgres start 想要启动数据库时, 就会发现出问题了:</description>
+    </item>
+    
+    <item>
+      <title>Homebrew 报错汇总</title>
+      <link>https://jtr109.github.io/posts/brew-curl-error/</link>
+      <pubDate>Wed, 06 Sep 2017 11:50:17 +0800</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/brew-curl-error/</guid>
+      <description>curl 超限错误 curl: (18) transfer closed with ** bytes remaining to read 这个报错是由于 mac 自带的 curl 请求头中长度的限制导致的, 我们需要按照由 homebrew 管理的 curl 和 git 来避免这个问题:
+$ brew install curl --with-openssl $ brew install git --with-curl --with-openssl 暂时解决方法不详</description>
+    </item>
+    
+    <item>
+      <title>Homebrew 镜像推荐</title>
+      <link>https://jtr109.github.io/posts/brew-mirror-recommend/</link>
+      <pubDate>Fri, 18 Aug 2017 09:03:47 +0800</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/brew-mirror-recommend/</guid>
+      <description>镜像选择 国内比较优秀的镜像源有豆瓣, 清华以及中科大.
+镜像说白了, 只是把国外节点上的文件缓存在国内服务器, 加快国内下载速度. 所以理论上速度都不可能有多大差距, 至于安全性, 就不得而知了.
+这里推荐中科大的主要原因是 &amp;ndash; 他家的文档比较清晰, 还有如何重置的说明.
+镜像地址链接  Homebrew Core 源 Homebrew 源 Homebrew Bottles 源 Homebrew Cask 源  简介 Homebrew, core, bottle 和 cask 的作用各不相同, 需要根据需求修改.
+ Homebrew: Homebrew 的整体框架. 对应 brew upgrade 下载数据的源, 如果下载其他程序速度慢, 可以考虑修改此源地址. Homebrew Core: Homebrew 的核心框架, brew update 如果速度极慢, 需要修改的就是这个源地址. Homebrew Bottles: 没有使用过, 从文档上看是对应二进制的包, 也就是预编译版本, 感觉没什么用. Homebrew Cask: 重头戏, 这是用于安装带界面 App 的 tap. 有了它, 你就可以通过 brew 下载和更新这些 App.</description>
+    </item>
+    
+  </channel>
+</rss>

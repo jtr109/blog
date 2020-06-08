@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>diesel on jtr109&#39;s Castle</title>
+    <link>https://jtr109.github.io/tags/diesel/</link>
+    <description>Recent content in diesel on jtr109&#39;s Castle</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 07 Nov 2019 22:36:29 +0000</lastBuildDate>
+    
+	<atom:link href="https://jtr109.github.io/tags/diesel/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Diesel UUID Problem Note</title>
+      <link>https://jtr109.github.io/posts/diesel-uuid/</link>
+      <pubDate>Thu, 07 Nov 2019 22:36:29 +0000</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/diesel-uuid/</guid>
+      <description>背景描述 在使用 Diesel 和 uuid 开发的过程中, 使用发生报错:
+error[E0277]: the trait bound `uuid::Uuid: diesel::Queryable&amp;lt;diesel::sql_types::Uuid, _&amp;gt;` is not satisfied --&amp;gt; src/models.rs:45:14 | 45 | .load::&amp;lt;App&amp;gt;(conn) | ^^^^ the trait `diesel::Queryable&amp;lt;diesel::sql_types::Uuid, _&amp;gt;` is not implemented for `uuid::Uuid` | = note: required because of the requirements on the impl of `diesel::Queryable&amp;lt;(diesel::sql_types::Uuid, diesel::sql_types::Text), _&amp;gt;` for `(uuid::Uuid, std::string::String)` = note: required because of the requirements on the impl of `diesel::Queryable&amp;lt;(diesel::sql_types::Uuid, diesel::sql_types::Text), _&amp;gt;` for `models::App` = note: required because of the requirements on the impl of `diesel::query_dsl::LoadQuery&amp;lt;_, models::App&amp;gt;` for `diesel::query_builder::SelectStatement&amp;lt;schema::app::table, dies el::query_builder::select_clause::DefaultSelectClause, diesel::query_builder::distinct_clause::NoDistinctClause, diesel::query_builder::where_clause::NoWhereClause, diesel::query _builder::order_clause::NoOrderClause, diesel::query_builder::limit_clause::LimitClause&amp;lt;diesel::expression::bound::Bound&amp;lt;diesel::sql_types::BigInt, i64&amp;gt;&amp;gt;&amp;gt;` 代码如下:</description>
+    </item>
+    
+  </channel>
+</rss>

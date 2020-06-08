@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>json on jtr109&#39;s Castle</title>
+    <link>https://jtr109.github.io/tags/json/</link>
+    <description>Recent content in json on jtr109&#39;s Castle</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 07 Nov 2019 22:31:12 +0000</lastBuildDate>
+    
+	<atom:link href="https://jtr109.github.io/tags/json/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Python gRPC Json Format 的小坑</title>
+      <link>https://jtr109.github.io/posts/python-grpc-json-format/</link>
+      <pubDate>Thu, 07 Nov 2019 22:31:12 +0000</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/python-grpc-json-format/</guid>
+      <description>背景 最近在开发一个网关项目, 需要将外部的 JSON 请求转换成 gRPC 请求向后转发, 并将 gRPC 响应转换为 JSON 格式的响应返回.
+实现过程中发现使用 google.protobuf.json_format.MessageToDict 的时候 ( google.protobuf.json_format.MessageToJson 同理) 有一些需要注意留意的细节.
+遇到问题 当使用 MessageToDict 对 messge 转换时, 发现两个不符合预期的问题:
+ 如果一个 message field 对应的值为 zero value, 对应的 dict 中不会显示该键值对 field 名称会从 snake_case 被转换成 lowerCamelCase  源码分析 以 MessageToDict 为例, 我们看一下函数的定义.
+def MessageToDict( message, including_default_value_fields=False, preserving_proto_field_name=False, use_integers_for_enums=False, descriptor_pool=None): &amp;#34;&amp;#34;&amp;#34;Converts protobuf message to a dictionary. When the dictionary is encoded to JSON, it conforms to proto3 JSON spec.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+
+    <meta name="author" content="jtr109">
+    <meta name="description" content="&lt;picker&gt; 选择器 小程序的 picker 有几个主要的属性参数:
+ bindchange: 返回发生 change 之后的 index value: 当前选中项的 index range: 选取项对应的范围  基础用法可以参考文档. 值得注意的是, 这里的 value 和 bindchange 返回的 event.detail.value 都是且只能是元素在 array 中的序号, 即 index 值 (从 0 开始). 即使是我们下面提到的 objectArray 目前也没有发现其他可以用来作为元素 key 的方法.
+但是文档中提供的方法只能用于一元数组的显示和选择, 虽然文档提到了 objectArray 的使用, 但是并未清晰地给出明确的使用方式. 如果我们还是按照文档的方法, 只定义 bindchagne, value and range, 会发现所有的选项都是 [object Object] 而非内容, 这是因为对于 picker 而言, 他将 range 被赋值的 objectArray 当作一个普通的一元数组, 取到的自然是整个 object. 正确的使用方法, 需要参考这篇小程序 picker 对于 objArray 怎么取值.">
+    <meta name="keywords" content="blog,developer,personal">
+
+    
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="小程序踩坑记录"/>
+<meta name="twitter:description" content="&lt;picker&gt; 选择器 小程序的 picker 有几个主要的属性参数:
+ bindchange: 返回发生 change 之后的 index value: 当前选中项的 index range: 选取项对应的范围  基础用法可以参考文档. 值得注意的是, 这里的 value 和 bindchange 返回的 event.detail.value 都是且只能是元素在 array 中的序号, 即 index 值 (从 0 开始). 即使是我们下面提到的 objectArray 目前也没有发现其他可以用来作为元素 key 的方法.
+但是文档中提供的方法只能用于一元数组的显示和选择, 虽然文档提到了 objectArray 的使用, 但是并未清晰地给出明确的使用方式. 如果我们还是按照文档的方法, 只定义 bindchagne, value and range, 会发现所有的选项都是 [object Object] 而非内容, 这是因为对于 picker 而言, 他将 range 被赋值的 objectArray 当作一个普通的一元数组, 取到的自然是整个 object. 正确的使用方法, 需要参考这篇小程序 picker 对于 objArray 怎么取值."/>
+
+    <meta property="og:title" content="小程序踩坑记录" />
+<meta property="og:description" content="&lt;picker&gt; 选择器 小程序的 picker 有几个主要的属性参数:
+ bindchange: 返回发生 change 之后的 index value: 当前选中项的 index range: 选取项对应的范围  基础用法可以参考文档. 值得注意的是, 这里的 value 和 bindchange 返回的 event.detail.value 都是且只能是元素在 array 中的序号, 即 index 值 (从 0 开始). 即使是我们下面提到的 objectArray 目前也没有发现其他可以用来作为元素 key 的方法.
+但是文档中提供的方法只能用于一元数组的显示和选择, 虽然文档提到了 objectArray 的使用, 但是并未清晰地给出明确的使用方式. 如果我们还是按照文档的方法, 只定义 bindchagne, value and range, 会发现所有的选项都是 [object Object] 而非内容, 这是因为对于 picker 而言, 他将 range 被赋值的 objectArray 当作一个普通的一元数组, 取到的自然是整个 object. 正确的使用方法, 需要参考这篇小程序 picker 对于 objArray 怎么取值." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jtr109.github.io/posts/xiao-cheng-xu-cai-keng-ji-lu/" />
+<meta property="article:published_time" content="2017-08-11T06:34:06+08:00" />
+<meta property="article:modified_time" content="2017-08-11T06:34:06+08:00" />
+
+
+    
+      <base href="https://jtr109.github.io/posts/xiao-cheng-xu-cai-keng-ji-lu/">
+    
+    <title>
+  小程序踩坑记录 · jtr109&#39;s Castle
+</title>
+
+    
+      <link rel="canonical" href="https://jtr109.github.io/posts/xiao-cheng-xu-cai-keng-ji-lu/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://jtr109.github.io/css/coder.min.3219ef62ae52679b7a9c19043171c3cd9f523628c2a65f3ef247ee18836bc90b.css" integrity="sha256-MhnvYq5SZ5t6nBkEMXHDzZ9SNijCpl8&#43;8kfuGINryQs=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://jtr109.github.io/css/custom.css" />
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://jtr109.github.io/favicon/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://jtr109.github.io/favicon/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.72.0" />
+  </head>
+
+  
+  
+  <body class="colorscheme-light"
+        onload=""
+  >
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://jtr109.github.io/">
+      jtr109&#39;s Castle
+    </a>
+    
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jtr109.github.io/posts/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jtr109.github.io/categories/">Categories</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jtr109.github.io/tags/">Tags</a>
+          </li>
+        
+      
+      
+    </ul>
+    
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">小程序踩坑记录</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2017-08-11T06:34:06&#43;08:00'>
+                August 11, 2017
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              1-minute read
+            </span>
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="https://jtr109.github.io/categories/%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/">开发笔记</a></div>
+
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="https://jtr109.github.io/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">小程序</a>
+      <span class="separator">•</span>
+    <a href="https://jtr109.github.io/tags/%E5%89%8D%E7%AB%AF/">前端</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        
+        <h2 id="picker-选择器"><code>&lt;picker&gt;</code> 选择器</h2>
+<p>小程序的 picker 有几个主要的属性参数:</p>
+<ul>
+<li>bindchange: 返回发生 change 之后的 index</li>
+<li>value: 当前选中项的 index</li>
+<li>range: 选取项对应的范围</li>
+</ul>
+<p>基础用法可以参考<a href="https://mp.weixin.qq.com/debug/wxadoc/dev/component/picker.html">文档</a>. 值得注意的是, 这里的 <code>value</code> 和 <code>bindchange</code> 返回的 <code>event.detail.value</code> 都是且只能是元素在 array 中的序号, 即 index 值 (从 0 开始). 即使是我们下面提到的 objectArray 目前也没有发现其他可以用来作为元素 key 的方法.</p>
+<p>但是文档中提供的方法只能用于一元数组的显示和选择, 虽然文档提到了 objectArray 的使用, 但是并未清晰地给出明确的使用方式. 如果我们还是按照文档的方法, 只定义 <code>bindchagne</code>, <code>value</code> and <code>range</code>, 会发现所有的选项都是 <code>[object Object]</code> 而非内容, 这是因为对于 picker 而言, 他将 range 被赋值的 objectArray 当作一个普通的一元数组, 取到的自然是整个 object. 正确的使用方法, 需要参考这篇<a href="https://segmentfault.com/q/1010000009868374">小程序 picker 对于 objArray 怎么取值</a>.</p>
+<p>简而言之, 如果是一个 objectArray 类型的数据组, 需要提供一个 <code>range-key</code> 来指定我们需要显示的是这个 object 中某个 key 对应的 value. 另外需要注意, 这里 <code>range-key</code> 的参数必须是这个 key 的名称, 形如 <code>range-key=&quot;name&quot;</code>, 不需要写成 <code>range-key=&quot;{{ name }}&quot;</code>.</p>
+<h2 id="底部弹出框">底部弹出框</h2>
+<p>小程序目前没有原生的底部弹出框, 有一个叫优秀的<a href="https://gist.github.com/jtr109/b0a34ee316ab4d20347028de4abbd006">弹出框实现</a>, 可以用于参考.</p>
+<h2 id="子页面和父页面的数据传递">子页面和父页面的数据传递</h2>
+<p>小程序中不同页面 (Page) 中的数据是无法直接共享的, 所以需要通过一些方法实现数据的传递. <a href="http://www.jianshu.com/p/aa8254b23847">这篇文章</a>介绍了三种实现页面间数据传递的方法及特点:</p>
+<ol>
+<li>随 url 传入</li>
+</ol>
+<ul>
+<li>这样实现的问题也很明显, 就是只有触发 <code>onLoad</code> 的情况才能触发, 所以类似 <code>wx.navigateBack</code> 的操作是没法更新父页面的.</li>
+</ul>
+<ol start="2">
+<li>存入全局的 <code>app.globalData</code></li>
+</ol>
+<ul>
+<li>
+<blockquote>
+<p>由于是全局数据存储，所以当你存入了那些数据后，必须谨慎的去管理这些全局数据（何时被销毁），否则一不小心，就会产生副作用。</p>
+</blockquote>
+</li>
+</ul>
+<ol start="3">
+<li>提取到父页面的 <code>Page</code> 对其进行操作.</li>
+</ol>
+<ul>
+<li>这是目前找到最好的实现方法了, 可以解耦功能, 处理逻辑也相对清晰.</li>
+</ul>
+<p>具体操作方法:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="font-weight:bold">let</span> pages = getCurrentPages()
+<span style="font-weight:bold">let</span> currentPage = pages[pages.length -1]
+<span style="font-weight:bold">let</span> prevPage = pages[pages.length -1]
+
+<span style="font-style:italic">// prevPage 相当于上个页面中的 this 可以执行相关的一切操作.
+</span><span style="font-style:italic">// 未尝试过其返回值, 使用时需做测试.
+</span><span style="font-style:italic"></span>prePage.setData({
+  mydata: <span style="font-style:italic">&#39;any data&#39;</span>
+})
+</code></pre></div>
+      </div>
+
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jtr109" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        
+        
+      </footer>
+    </article>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/startup.js" id="MathJax-script"></script>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [
+          ['$', '$'], ['\\(', '\\)']
+        ],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  </section>
+
+      </div>
+
+      
+  <footer class="footer">
+    <section class="container">
+      
+        <p>Welcome to My Castle.</p>
+      
+      
+        ©
+        
+        2020
+         jtr109 
+      
+      
+         · 
+        Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+      
+      
+    </section>
+  </footer>
+
+    </main>
+
+    
+
+    
+
+    
+
+  </body>
+
+</html>

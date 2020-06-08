@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+
+    <meta name="author" content="jtr109">
+    <meta name="description" content="今天 PostgreSQL 更新到了 10.0, 对于我这样的新手, 可以说是悲喜交加. Server 本身更新了, 但是数据库还是老的, 会导致无法使用的问题. 在这里分享一下数据库的无痛恢复过程.
+问题描述 今天执行 $brew upgrade 的时候, 发现 postgresql 也更新了, 心里生出一丝不详的预感. 打开本地开发的 web 服务:
+$/usr/local/bin/pg_ctl -D /usr/local/var/postgres restart 返回如下
+waiting for server to shut down.... done server stopped waiting for server to start..../bin/sh: /usr/local/Cellar/postgresql/9.6.5/bin/postgres: No such file or directory /bin/sh: line 0: exec: /usr/local/Cellar/postgresql/0.6.5/bin/postgres: cannot execute: No such file or directory stopped waiting pg_ctl: could not start server 于是再运行
+$/usr/local/bin/pg_ctl -D /user/local/var/postgres start 想要启动数据库时, 就会发现出问题了:">
+    <meta name="keywords" content="blog,developer,personal">
+
+    
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Homebrew 自动更新 PostgreSQL 后对应数据库的更新处理"/>
+<meta name="twitter:description" content="今天 PostgreSQL 更新到了 10.0, 对于我这样的新手, 可以说是悲喜交加. Server 本身更新了, 但是数据库还是老的, 会导致无法使用的问题. 在这里分享一下数据库的无痛恢复过程.
+问题描述 今天执行 $brew upgrade 的时候, 发现 postgresql 也更新了, 心里生出一丝不详的预感. 打开本地开发的 web 服务:
+$/usr/local/bin/pg_ctl -D /usr/local/var/postgres restart 返回如下
+waiting for server to shut down.... done server stopped waiting for server to start..../bin/sh: /usr/local/Cellar/postgresql/9.6.5/bin/postgres: No such file or directory /bin/sh: line 0: exec: /usr/local/Cellar/postgresql/0.6.5/bin/postgres: cannot execute: No such file or directory stopped waiting pg_ctl: could not start server 于是再运行
+$/usr/local/bin/pg_ctl -D /user/local/var/postgres start 想要启动数据库时, 就会发现出问题了:"/>
+
+    <meta property="og:title" content="Homebrew 自动更新 PostgreSQL 后对应数据库的更新处理" />
+<meta property="og:description" content="今天 PostgreSQL 更新到了 10.0, 对于我这样的新手, 可以说是悲喜交加. Server 本身更新了, 但是数据库还是老的, 会导致无法使用的问题. 在这里分享一下数据库的无痛恢复过程.
+问题描述 今天执行 $brew upgrade 的时候, 发现 postgresql 也更新了, 心里生出一丝不详的预感. 打开本地开发的 web 服务:
+$/usr/local/bin/pg_ctl -D /usr/local/var/postgres restart 返回如下
+waiting for server to shut down.... done server stopped waiting for server to start..../bin/sh: /usr/local/Cellar/postgresql/9.6.5/bin/postgres: No such file or directory /bin/sh: line 0: exec: /usr/local/Cellar/postgresql/0.6.5/bin/postgres: cannot execute: No such file or directory stopped waiting pg_ctl: could not start server 于是再运行
+$/usr/local/bin/pg_ctl -D /user/local/var/postgres start 想要启动数据库时, 就会发现出问题了:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jtr109.github.io/posts/after-postgresql-upgrade/" />
+<meta property="article:published_time" content="2017-10-18T10:08:27+08:00" />
+<meta property="article:modified_time" content="2017-10-18T10:08:27+08:00" />
+
+
+    
+      <base href="https://jtr109.github.io/posts/after-postgresql-upgrade/">
+    
+    <title>
+  Homebrew 自动更新 PostgreSQL 后对应数据库的更新处理 · jtr109&#39;s Castle
+</title>
+
+    
+      <link rel="canonical" href="https://jtr109.github.io/posts/after-postgresql-upgrade/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://jtr109.github.io/css/coder.min.3219ef62ae52679b7a9c19043171c3cd9f523628c2a65f3ef247ee18836bc90b.css" integrity="sha256-MhnvYq5SZ5t6nBkEMXHDzZ9SNijCpl8&#43;8kfuGINryQs=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://jtr109.github.io/css/custom.css" />
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://jtr109.github.io/favicon/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://jtr109.github.io/favicon/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.72.0" />
+  </head>
+
+  
+  
+  <body class="colorscheme-light"
+        onload=""
+  >
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://jtr109.github.io/">
+      jtr109&#39;s Castle
+    </a>
+    
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jtr109.github.io/posts/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jtr109.github.io/categories/">Categories</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jtr109.github.io/tags/">Tags</a>
+          </li>
+        
+      
+      
+    </ul>
+    
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Homebrew 自动更新 PostgreSQL 后对应数据库的更新处理</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2017-10-18T10:08:27&#43;08:00'>
+                October 18, 2017
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              2-minute read
+            </span>
+          </div>
+          
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="https://jtr109.github.io/tags/homebrew/">homebrew</a>
+      <span class="separator">•</span>
+    <a href="https://jtr109.github.io/tags/postgresql/">postgresql</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        
+        <p>今天 PostgreSQL 更新到了 10.0, 对于我这样的新手, 可以说是悲喜交加. Server 本身更新了, 但是数据库还是老的, 会导致无法使用的问题. 在这里分享一下数据库的无痛恢复过程.</p>
+<h2 id="问题描述">问题描述</h2>
+<p>今天执行 <code>$brew upgrade</code> 的时候, 发现 postgresql 也更新了, 心里生出一丝不详的预感. 打开本地开发的 web 服务:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">$/usr/local/bin/pg_ctl -D /usr/local/var/postgres restart
+</code></pre></div><p>返回如下</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">waiting <span style="font-weight:bold">for</span> server to shut down.... <span style="font-weight:bold">done</span>
+server stopped
+waiting <span style="font-weight:bold">for</span> server to start..../bin/sh: /usr/local/Cellar/postgresql/9.6.5/bin/postgres: No such file or directory
+/bin/sh: line 0: exec: /usr/local/Cellar/postgresql/0.6.5/bin/postgres: cannot execute: No such file or directory
+stopped waiting
+pg_ctl: could not start server
+</code></pre></div><p>于是再运行</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">$/usr/local/bin/pg_ctl -D /user/local/var/postgres start
+</code></pre></div><p>想要启动数据库时, 就会发现出问题了:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">waiting <span style="font-weight:bold">for</span> server to start... FATAL: database files are incompatible with server
+[58146] DETAIL: The data directory was initialized by PostgreSQL version 9.6, which is not compatible with this version
+10.0.
+ stop waiting
+pg_ctl: could not start server
+Examine the log output.
+</code></pre></div><p>如果你也遇到了这样的问题, 那就可以按接下来这样处理.</p>
+<h2 id="特别提示">特别提示</h2>
+<ul>
+<li>由于我原来的版本是 9.6.5, 这里都以该版本举例, 其他版本的差异, 我会提及. 也请自己留意.</li>
+<li>请找一个干净的目录执行以下操作, 因为执行成功之后, 会生成一些脚本和文件, 都是使用后可以删除的, 避免污染其他目录.</li>
+</ul>
+<h2 id="核心步骤">核心步骤</h2>
+<p>这个问题说白了就是数据库没有自动跟着 server 一起更新, 其实更新的时候 homebrew 下已经有对应的提示了.</p>
+<p>我们主要要做的就是使用 <code>pg_upgrade</code> 将数据库版本更新, 具体的文档可以点击<a href="https://www.postgresql.org/docs/10/static/pgupgrade.html">这里</a>. 而对于我们而言, 核心的代码格式就是这样的:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$pg_upgrade <span style="font-weight:bold;font-style:italic">\
+</span><span style="font-weight:bold;font-style:italic"></span>-d &lt;原数据目录&gt; <span style="font-weight:bold;font-style:italic">\ </span> <span style="font-style:italic"># 我们原来的数据库目录, 目前的版本为 9.6.5</span>
+-D &lt;新数据目录&gt; <span style="font-weight:bold;font-style:italic">\ </span> <span style="font-style:italic"># 目前还不存在, 稍后会新建</span>
+-b &lt;原执行目录&gt; <span style="font-weight:bold;font-style:italic">\ </span> <span style="font-style:italic"># 这个执行目录对我们而言已经不存在了</span>
+-B &lt;新执行目录&gt; <span style="font-weight:bold;font-style:italic">\ </span> <span style="font-style:italic"># 更新后版本为 10.0 的执行目录</span>
+-v  <span style="font-style:italic"># verbose internal logging, 最好写</span>
+</code></pre></div><h2 id="实现依赖">实现依赖</h2>
+<p>从上面的格式可以看出, 我们需要 &ldquo;新数据目录&rdquo;, &ldquo;原执行目录&rdquo;, 那么开始补全</p>
+<h3 id="下载旧版本的-postgresql">下载旧版本的 PostgreSQL</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$brew tap caskroom/versions
+$brew install postgresql@9.6  <span style="font-style:italic"># 如果你的版本不是 9.6 请执行 $brew search postgresql, 根据返回的结果选择</span>
+</code></pre></div><h3 id="初始化-100-数据库">初始化 10.0 数据库</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$initdb /usr/local/var/postgres10.0 -E utf8
+</code></pre></div><h2 id="执行-pg_upgrade">执行 <code>pg_upgrade</code></h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$pg_upgrade <span style="font-weight:bold;font-style:italic">\
+</span><span style="font-weight:bold;font-style:italic"></span>-d /usr/local/var/postgres <span style="font-weight:bold;font-style:italic">\
+</span><span style="font-weight:bold;font-style:italic"></span>-D /usr/local/var/postgres10.0 <span style="font-weight:bold;font-style:italic">\
+</span><span style="font-weight:bold;font-style:italic"></span>-b /usr/local/Cellar/postgresql@9.6/9.6.5/bin <span style="font-weight:bold;font-style:italic">\
+</span><span style="font-weight:bold;font-style:italic"></span>-B /usr/local/Cellar/postgresql/10.0/bin <span style="font-weight:bold;font-style:italic">\
+</span><span style="font-weight:bold;font-style:italic"></span>-v
+</code></pre></div><p>在一大堆的 ok 过后, 看到 <code>Upgrade Complete</code> 就说明安装成功了.</p>
+<h2 id="加载服务之前">加载服务之前</h2>
+<p>这时候你可以做的事情有:</p>
+<ul>
+<li>执行新生成的脚本, 如果你知道他们是干嘛的. (对不起, 我不知道. 欢迎交流! my email: <code>conbas2019@gmail.com</code>.)</li>
+<li>删除老的执行目录和数据库目录. (建议别急着删除, 先观察一下, 我相信看到这里的同学都和我差不多水平, 那还请做事稳妥一点.)</li>
+<li>用新路径替换老路径. (还是和上面一样的建议, 除非你知道自己在干嘛)</li>
+</ul>
+<h2 id="重新加载服务">重新加载服务</h2>
+<p>由于我没急着删除各种文件, 先使用新的路径执行.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$/usr/local/bin/pg_ctl -D /usr/local/var/postgres10.0 start
+</code></pre></div><p>如果显示</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="font-weight:bold">done</span>
+server started
+</code></pre></div><p>那就说明成功了. 希望你也如此.</p>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a href="https://mattbrictson.com/postgresql-93-brew-upgrade">Upgrading PostgreSQL 9.2 to 9.3 with Homebrew</a></li>
+<li><a href="https://www.postgresql.org/docs/10/static/pgupgrade.html">pg_upgrade</a></li>
+<li><a href="https://stackoverflow.com/questions/20754669/how-to-fix-postgres-after-updating-upgrading-brew">how to fix postgres after updating/upgrading brew</a> (<code>pg_dumpall</code> 也是一种方案, 不过我尝试失败了, 如果我的文章不能帮到你, 可以试试这个)</li>
+<li><a href="https://www.postgresql.org/docs/10/static/upgrading.html">pgsql 10 的更新手册</a> 提供了所有的更新方案</li>
+</ul>
+<h2 id="关于其他">关于其他</h2>
+<p>自认为难得写了一篇有点用处的东西, 希望能帮到大家.</p>
+<p>还是那句话, 希望多多交流. <a href="https://github.com/jtr109">这是我的 github</a>, 欢迎相互 follow.</p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jtr109" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        
+        
+      </footer>
+    </article>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/startup.js" id="MathJax-script"></script>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [
+          ['$', '$'], ['\\(', '\\)']
+        ],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  </section>
+
+      </div>
+
+      
+  <footer class="footer">
+    <section class="container">
+      
+        <p>Welcome to My Castle.</p>
+      
+      
+        ©
+        
+        2020
+         jtr109 
+      
+      
+         · 
+        Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+      
+      
+    </section>
+  </footer>
+
+    </main>
+
+    
+
+    
+
+    
+
+  </body>
+
+</html>

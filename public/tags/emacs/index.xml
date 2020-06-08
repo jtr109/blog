@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>emacs on jtr109&#39;s Castle</title>
+    <link>https://jtr109.github.io/tags/emacs/</link>
+    <description>Recent content in emacs on jtr109&#39;s Castle</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 24 Aug 2017 09:43:28 +0800</lastBuildDate>
+    
+	<atom:link href="https://jtr109.github.io/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>emacs 上手笔记</title>
+      <link>https://jtr109.github.io/posts/emacs-again/</link>
+      <pubDate>Thu, 24 Aug 2017 09:43:28 +0800</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/emacs-again/</guid>
+      <description>简述 再次尝试上手 emacs
+配置文件 .spacemacs file 按照好 spacemacs 的相关组件, 会显示 Quick Help. 建议看完.
+其中写到了配置文件 .spancemacs 的打开方式: [SPC f e d]</description>
+    </item>
+    
+  </channel>
+</rss>

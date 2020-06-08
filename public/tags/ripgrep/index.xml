@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ripgrep on jtr109&#39;s Castle</title>
+    <link>https://jtr109.github.io/tags/ripgrep/</link>
+    <description>Recent content in ripgrep on jtr109&#39;s Castle</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 07 Nov 2019 22:40:05 +0000</lastBuildDate>
+    
+	<atom:link href="https://jtr109.github.io/tags/ripgrep/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Replace In All Files</title>
+      <link>https://jtr109.github.io/posts/replace-in-all-files/</link>
+      <pubDate>Thu, 07 Nov 2019 22:40:05 +0000</pubDate>
+      
+      <guid>https://jtr109.github.io/posts/replace-in-all-files/</guid>
+      <description>背景 在项目开发过程中, 有时需要全局替换一些变量名. 如果使用 VSCode 这类现代编辑器, 可以十分便利地办到. 但是使用 Vim (or NeoVim) 就没有那么容易了.
+方案 我们需要一个方案来实现全局替换的需求. 需要满足如下要求:
+ 可以自定义查找范围. 包括:   选择根路径 筛选符合指定 pattern 的文件 排除符合指定 pattern 的文件  查看确认筛选结果后, 执行修改  目前想到的办法是通过 ripgrep 和 sed 实现, 具体方法可以参照 ripgrep 的文档.
+工作流 全局查找 ❯ rg &amp;#34;println&amp;#34; . ./src/main.rs 2: println!(&amp;#34;Hello world!&amp;#34;); ./backend/src/bin/todo.rs 8: println!(&amp;#34;subcommands&amp;#34;); 9: println!(&amp;#34; new&amp;lt;title&amp;gt;: create a new task&amp;#34;); 33: println!(&amp;#34;new: missing &amp;lt;title&amp;gt;&amp;#34;); 44: println!(&amp;#34;show: unexpected argument&amp;#34;); 50: println!(&amp;#34;TASKS\n-----&amp;#34;); 52: println!</description>
+    </item>
+    
+  </channel>
+</rss>
