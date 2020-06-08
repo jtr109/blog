@@ -12,7 +12,7 @@ typora-root-url: ../../static
 
 其实我从没想过, 海上钢琴师这么一部老片会在数年后被引进到国内. 那天打开淘票票看到海上钢琴师出现在 "即将上映" 列表中, 还让人觉得很迷惑. 这部电影我很少有的看了一遍又一遍, 每每都会被他的剧情小小打动, 而更多的是任由里面一首首美妙的乐曲按摩我的耳朵, 让我放松下来.
 
-![MV5BMzIwOTdmNjQtOWQ1ZS00ZWQ4LWIxYTMtOWFkM2NjODJiMGY4L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNTI4MjkwNjA@._V1_](The-Legend-of-1900/MV5BMzIwOTdmNjQtOWQ1ZS00ZWQ4LWIxYTMtOWFkM2NjODJiMGY4L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNTI4MjkwNjA@._V1_.jpg)
+![MV5BMzIwOTdmNjQtOWQ1ZS00ZWQ4LWIxYTMtOWFkM2NjODJiMGY4L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNTI4MjkwNjA@._V1_](/images/The-Legend-of-1900.assets/MV5BMzIwOTdmNjQtOWQ1ZS00ZWQ4LWIxYTMtOWFkM2NjODJiMGY4L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNTI4MjkwNjA@._V1_.jpg)
 
 >  陆地上有太多条路, 选择哪条是正确的.
 

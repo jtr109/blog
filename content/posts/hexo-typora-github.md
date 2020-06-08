@@ -45,7 +45,7 @@ Typora 可以直接将图片复制到 `.md` 文档中, 但是如何和 Hexo 拉�
 1. 修改图片存放目录为 `./${filename}`
 2. 勾选 `Use relative path if possible`.
 
-![image-20191107200154200](hexo-typora-github/image-20191107200154200.png)
+![image-20191107200154200](/images/hexo-typora-github.assets/image-20191107200154200.png)
 
 尝试截图, 使用 `Ctrl-v` 粘贴到 Typora 中, 图片地址为: `![image-20191107200154200](hexo-typora-github/image-20191107200154200.png)`. 符合预期, 图片可以正常显示了.
 
@@ -74,7 +74,7 @@ hexo clean && hexo deploy
 
 Next theme 默认生成的 icon 比较朴素, 可以使用 [favicon generator](https://favicon.io/favicon-generator/) 生成自己的 favicon, 既可以享受定制化的乐趣, 也避免了版权纠纷.
 
-![favicon generator | favicon.io](hexo-typora-github/image-20191109115147241.png)
+![favicon generator | favicon.io](/images/hexo-typora-github.assets/image-20191109115147241.png)
 
 点击右上角 Download 下载到本地, 解压并复制到 `themes/next/source/images` 下, 并修改 Next 的配置文件 `nvim themes/next/_config.yml`.
 

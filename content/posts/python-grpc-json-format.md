@@ -60,7 +60,7 @@ def MessageToDict(
 
 在调用 `MessageToDict` 函数时, 将以上两个参数指定为 `True` 即可解决问题. [代码示例](https://github.com/jtr109/zero-value-in-protos/blob/master/example.ipynb)如下:
 
-![](python-grpc-json-format/1570964227734-2317f63a-ba36-476a-8a80-58947a84aac4.png)
+![](/images/python-grpc-json-format.assets/1570964227734-2317f63a-ba36-476a-8a80-58947a84aac4.png)
 
 示例代码可以在[这个项目](https://github.com/jtr109/zero-value-in-protos)中查看
 
