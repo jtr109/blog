@@ -59,6 +59,13 @@ pygmentscodefencesguesssyntax = true
 #     icon = "fab fa-twitter fa-2x"
 #     weight = 3
 #     url = "https://twitter.com/johndoe/"
+[[params.social]]
+    name = "RSS"
+    icon = "fas fa-rss"
+    weight = 6
+    url = "/index.xml"
+    rel = "alternate"
+    type = "application/rss+xml"
 
 # Menu links
 [[menu.main]]
