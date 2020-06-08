@@ -21,7 +21,7 @@ pygmentsstyle = "bw"
 pygmentscodefences = true
 pygmentscodefencesguesssyntax = true
 
-# disqusShortname = "yourdiscussshortname"
+disqusShortname = "jtr109"
 
 [params]
     author = "jtr109"
@@ -73,6 +73,14 @@ pygmentscodefencesguesssyntax = true
     weight = 1
     url  = "/posts/"
 [[menu.main]]
-    name = "About"
+    name = "Categories"
     weight = 2
-    url = "/about/"
+    url = "/categories/"
+[[menu.main]]
+    name = "Tags"
+    weight = 2
+    url = "/tags/"
+# [[menu.main]]
+#     name = "About"
+#     weight = 2
+#     url = "/about/"
