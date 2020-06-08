@@ -26,13 +26,17 @@ Typora 有两个选项需要配置：
 
 点击 Use Image Root Path，选择 `static` 目录作为根路径。
 
-![image-20200607195608916](/images/image-20200607195608916.png)
+![image-20200607195608916](/images/manage-images-in-typora-and-hugo.assets/image-20200607195608916.png)
 
 ### 设置图片自动存放路径
 
 在设置中选择 Image 栏，将 `static/images` 的绝对路径设置为图片插入地址。
 
-![image-20200607195835475](/images/image-20200607195835475.png)
+![image-20200607195835475](/images/manage-images-in-typora-and-hugo.assets/image-20200607195835475.png)
+
+也可以通过语法加入图片子目录，更好地管理图片。
+
+![image-20200608112923095](/images/manage-images-in-typora-and-hugo.assets/image-20200608112923095.png)
 
 经过如上配置，截图便可通过 Command+v 自动保存在 `static/images` 目录中。
 
