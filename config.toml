@@ -1,14 +1,4 @@
-# baseURL = "http://example.org/"
-# languageCode = "en-us"
-# title = "My New Hugo Site"
-# theme = "hyde"
-# 
-# [Menus]
-#   main = [
-#     {Name = "Github", URL = "https://github.com/jtr109/"},
-#   ]
-
-baseurl = "https://jtr109.github.io"
+baseUrl = "https://jtr109.github.io"
 title = "jtr109's Castle"
 theme = "hugo-coder"
 languagecode = "en"

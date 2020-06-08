@@ -42,7 +42,7 @@ Typora 有两个选项需要配置：
 
 ![image-20200608112923095](/images/manage-images-in-typora-and-hugo.assets/image-20200608112923095.png)
 
-经过如上配置，截图便可通过 Command+v 自动保存在 `static/images` 目录中。
+经过如上配置，截图便可通过 command+v 自动保存在 `static/images` 目录中。
 
 ## 配置 Hugo
 
