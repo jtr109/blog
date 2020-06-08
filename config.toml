@@ -1,5 +1,71 @@
-baseURL = "http://example.org/"
-languageCode = "en-us"
-title = "My New Hugo Site"
-theme = "ananke"
-staticDir = ["static"]
+# baseURL = "http://example.org/"
+# languageCode = "en-us"
+# title = "My New Hugo Site"
+# theme = "hyde"
+# 
+# [Menus]
+#   main = [
+#     {Name = "Github", URL = "https://github.com/jtr109/"},
+#   ]
+
+baseurl = "https://jtr109.github.io"
+title = "jtr109's Castle"
+theme = "hugo-coder"
+languagecode = "en"
+defaultcontentlanguage = "en"
+
+paginate = 20
+canonifyurls = true
+
+pygmentsstyle = "bw"
+pygmentscodefences = true
+pygmentscodefencesguesssyntax = true
+
+# disqusShortname = "yourdiscussshortname"
+
+[params]
+    author = "jtr109"
+    info = "Python and Rust Programmer"
+    description = "Ryan Li's personal website"
+    keywords = "blog,developer,personal"
+    avatarurl = "/images/avatar.png"
+
+    favicon_32 = "/favicon/favicon-32x32.png"
+    favicon_16 = "/favicon/favicon-16x16.png"
+
+    footercontent = "Welcome to My Castle."
+
+    hidecredits = false
+    hidecopyright = false
+
+    rtl = false
+
+    math = true
+    custom_css = ["css/custom.css"]
+
+# Social links
+[[params.social]]
+    name = "Github"
+    icon = "fab fa-github fa-2x"
+    weight = 1
+    url = "https://github.com/jtr109/"
+# [[params.social]]
+#     name = "Gitlab"
+#     icon = "fab fa-gitlab fa-2x"
+#     weight = 2
+#     url = "https://gitlab.com/johndoe/"
+# [[params.social]]
+#     name = "Twitter"
+#     icon = "fab fa-twitter fa-2x"
+#     weight = 3
+#     url = "https://twitter.com/johndoe/"
+
+# Menu links
+[[menu.main]]
+    name = "Blog"
+    weight = 1
+    url  = "/posts/"
+[[menu.main]]
+    name = "About"
+    weight = 2
+    url = "/about/"
