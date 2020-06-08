@@ -16,7 +16,7 @@ typora-root-url: ../../static
 
 解答整理如下：
 
-`config`是在`app/__init__.py`中调用的，所以执行`model.py`中的方法时，`SQLALCHEMY_COMMIT_ON_TEARDOWN = True`已经生效了。即请求结束后自动commit。
+`config`是在`app/__init__.py`中调用的，所以执行`model.py`中的方法时，`SQLALCHEMY_COMMIT_ON_TEARDOWN = True`已经生效了。即请求结束后自动commit。
 
 后面几个章节中出现`db.session.commit()`的主要作用都是为了生成id来使用。
 
