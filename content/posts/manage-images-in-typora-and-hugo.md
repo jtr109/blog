@@ -4,7 +4,7 @@ date: 2020-06-07T19:48:37+08:00
 draft: false
 typora-root-url: ../../static
 categories:
-  - Tech
+  - tech
 series:
   - "Blog Experimental Reports"
 tags:

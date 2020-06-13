@@ -2,7 +2,7 @@
 title: "Django Password"
 date: 2019-03-27T13:59:45+08:00
 categories:
-  - Tech
+  - tech
 tags:
   - Django
   - security

@@ -2,7 +2,7 @@
 title: Homebrew 自动更新 PostgreSQL 后对应数据库的更新处理
 date: 2017-10-18T10:08:27+08:00
 categories:
-  - Tech
+  - tech
 tags:
   - Homebrew
   - PostgreSQL

@@ -2,7 +2,7 @@
 title: emacs 上手笔记
 date: 2017-08-24T09:43:28+08:00
 categories:
-  - Tech
+  - tech
 tags:
   - Emacs
   - editor

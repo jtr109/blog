@@ -4,7 +4,7 @@ date: 2017-08-11T06:34:06+08:00
 tags:
   - 小程序
 categories:
-  - Tech
+  - tech
 typora-root-url: ../../static
 ---
 

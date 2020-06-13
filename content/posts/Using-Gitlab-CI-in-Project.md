@@ -2,7 +2,7 @@
 title: Using Gitlab CI in Project
 date: 2019-11-08 09:44:11
 categories:
-  - Tech
+  - tech
 tags:
   - Gitlab
   - Python

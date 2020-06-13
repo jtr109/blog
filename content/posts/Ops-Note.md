@@ -2,7 +2,7 @@
 title: 运维技巧随手记
 date: 2019-11-11 10:59:57
 categories:
-  - Tech
+  - tech
 tags:
   - Ops
 typora-root-url: ../../static

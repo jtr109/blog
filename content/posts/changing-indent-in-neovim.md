@@ -2,7 +2,7 @@
 title: 在 NeoVim 中修改指定文件类型的缩进
 date: 2019-11-07 22:41:13
 categories:
-  - Tech
+  - tech
 tags:
   - Vim
   - Neovim

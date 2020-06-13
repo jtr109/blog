@@ -2,7 +2,7 @@
 title: Yet Another Scheme Tutorial 学习笔记
 date: 2017-08-23T07:30:11+08:00
 categories:
-  - Tech
+  - tech
 tags:
   - Scheme
   - LISP

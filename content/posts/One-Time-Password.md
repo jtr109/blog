@@ -1,7 +1,7 @@
 ---
 title: 一次性密码
 categories:
-  - Tech
+  - tech
 date: 2020-01-07 23:45:24
 tags:
   - security

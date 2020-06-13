@@ -2,7 +2,7 @@
 title: Homebrew 报错汇总
 date: 2017-09-06T11:50:17+08:00
 categories:
-  - Tech
+  - tech
 tags:
   - Homebrew
 typora-root-url: ../../static

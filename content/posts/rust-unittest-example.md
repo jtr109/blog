@@ -2,7 +2,7 @@
 title: Rust Unit Test Example
 date: 2019-11-07 22:38:24
 categories:
-  - Tech
+  - tech
 tags:
   - Rust
   - test

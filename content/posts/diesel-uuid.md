@@ -2,7 +2,7 @@
 title: Diesel UUID Problem Note
 date: 2019-11-07 22:36:29
 categories:
-  - Tech
+  - tech
 tags:
   - Rust
   - Diesel

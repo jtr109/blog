@@ -2,7 +2,7 @@
 title: 在 Vim 中赋值搜索寄存器
 date: 2017-10-25T20:07:41+08:00
 categories:
-  - Tech
+  - tech
 tags:
   - Vim
 typora-root-url: ../../static

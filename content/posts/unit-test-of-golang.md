@@ -3,7 +3,7 @@ title: "Unit test of Golang"
 date: 2018-08-21T17:33:29+08:00
 draft: false
 categories:
-  - Tech
+  - tech
 tags:
   - Golang
   - test

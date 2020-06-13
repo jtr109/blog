@@ -1,7 +1,7 @@
 ---
 title: Export or Not Export in Environment File
 categories:
-  - Tech
+  - tech
 date: 2019-12-10 11:00:25
 tags:
   - Env

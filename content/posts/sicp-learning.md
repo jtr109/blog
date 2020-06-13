@@ -2,7 +2,7 @@
 title: SICP 学习摸索
 date: 2017-08-23T06:58:42+08:00
 categories:
-  - Tech
+  - tech
 tags:
   - SICP
   - LISP

@@ -2,7 +2,7 @@
 title: MySQL Dump 笔记
 date: 2017-08-13T14:04:20+08:00
 categories:
-  - Tech
+  - tech
 tags:
   - MySQL
 typora-root-url: ../../static

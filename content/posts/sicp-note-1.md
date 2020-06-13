@@ -2,7 +2,7 @@
 title: SICP 学习笔记 (一)
 date: 2017-08-19T07:38:15+08:00
 categories:
-  - Tech
+  - tech
 tags:
   - SICP
   - LISP

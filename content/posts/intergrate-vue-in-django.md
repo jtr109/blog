@@ -2,7 +2,7 @@
 title: "Intergate Vue in Django"
 date: 2019-05-31T14:08:00+08:00
 categories:
-  - Tech
+  - tech
 tags:
   - Python
   - Django

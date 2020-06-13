@@ -3,7 +3,7 @@ title: "Asyncio Note"
 date: 2018-08-24T07:08:11+08:00
 draft: false
 categories:
-  - Tech
+  - tech
 tags:
   - Python
   - asyncio

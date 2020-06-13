@@ -4,7 +4,7 @@ date: 2018-09-07T07:34:23+08:00
 draft: false
 typora-root-url: ../../static
 categories:
-  - Tech
+  - tech
 tags:
   - Python
   - pattern

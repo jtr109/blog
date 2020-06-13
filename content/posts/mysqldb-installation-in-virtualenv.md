@@ -2,7 +2,7 @@
 title: Install MySQLdb in virtualenv，从入门到放弃
 date: 2017-08-13T14:08:41+08:00
 categories:
-  - Tech
+  - tech
 tags:
   - Python
   - MySQL

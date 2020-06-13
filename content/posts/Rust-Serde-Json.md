@@ -1,7 +1,7 @@
 ---
 title: Rust Serde Json
 categories:
-  - Tech
+  - tech
 date: 2019-12-24 23:34:10
 tags:
   - Rust

@@ -3,7 +3,7 @@ title: "在 Python 中使用 RSA 2048"
 date: 2020-06-10T14:54:41+08:00
 typora-root-url: ../../static
 categories:
-  - Tech
+  - tech
 tags:
   - RSA
   - Cryptographic

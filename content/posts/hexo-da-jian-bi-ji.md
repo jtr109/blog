@@ -2,7 +2,7 @@
 title: Hexo 搭建笔记
 date: 2017-08-11T07:41:21+08:00
 categories:
-  - Tech
+  - tech
 series:
   - Blog Experimental Reports
 tags:

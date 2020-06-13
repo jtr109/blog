@@ -2,7 +2,7 @@
 title: Replace In All Files
 date: 2019-11-07 22:40:05
 categories:
-  - Tech
+  - tech
 tags:
   - Vim
   - ripgrep
@@ -58,7 +58,12 @@ typora-root-url: ../../static
 ### 全局替换
 
 ```shell
+❯ rg "println" . --files-with-matches | xargs sed -i '' 's/println/pp/g'
+```
+
+或者
+
+```shell
 ❯ rg "println" . --files-with-matches -0 | xargs -0 sed -i '' 's/println/pp/g'
 ```
 
-#tech/shell

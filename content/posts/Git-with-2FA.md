@@ -1,7 +1,7 @@
 ---
 title: 在 Git 托管服务中使用两步验证能力
 categories:
-  - Tech
+  - tech
 date: 2019-11-14 14:06:16
 tags:
   - Git
