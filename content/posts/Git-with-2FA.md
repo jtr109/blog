@@ -1,12 +1,12 @@
 ---
 title: 在 Git 托管服务中使用两步验证能力
 categories:
-  - tech
+  - Tech
 date: 2019-11-14 14:06:16
 tags:
-  - git
-  - gitlab
-  - security
+  - Git
+  - Gitlab
+  - Security
 typora-root-url: ../../static
 ---
 

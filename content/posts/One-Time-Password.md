@@ -1,11 +1,11 @@
 ---
 title: 一次性密码
 categories:
-  - tech
+  - Tech
 date: 2020-01-07 23:45:24
 tags:
-  - security
-  - rust
+  - Security
+  - Rust
 typora-root-url: ../../static
 ---
 

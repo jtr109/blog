@@ -1,9 +1,12 @@
 ---
 title: Export or Not Export in Environment File
 categories:
-  - tech
+  - Tech
 date: 2019-12-10 11:00:25
 tags:
+  - Env
+  - Bash
+  - Shell
 typora-root-url: ../../static
 ---
 

@@ -1,10 +1,10 @@
 ---
 title: Rust Serde Json
 categories:
-  - tech
+  - Tech
 date: 2019-12-24 23:34:10
 tags:
-  - rust
+  - Rust
 typora-root-url: ../../static
 ---
 

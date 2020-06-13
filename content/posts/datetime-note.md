@@ -1,9 +1,10 @@
 ---
 title: 计算机相关时间规则和表示方法
 categories:
-  - tech
+  - Tech
 date: 2019-12-07 22:02:45
 tags:
+  - Datetime
 typora-root-url: ../../static
 ---
 

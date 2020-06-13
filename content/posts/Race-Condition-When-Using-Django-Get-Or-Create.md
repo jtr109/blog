@@ -2,10 +2,10 @@
 title: Django `get_or_create` 创建重复条目问题分析和处理
 date: 2019-11-09 22:09:45
 categories:
-  - tech
+  - Tech
 tags:
-  - python
-  - django
+  - Python
+  - Django
 typora-root-url: ../../static
 ---
 

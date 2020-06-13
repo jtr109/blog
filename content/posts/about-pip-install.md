@@ -4,8 +4,8 @@ categories:
   - tech
 date: 2019-11-27 17:27:14
 tags:
-  - python
-  - pypi
+  - Python
+  - PyPI
   - pip
 typora-root-url: ../../static
 ---

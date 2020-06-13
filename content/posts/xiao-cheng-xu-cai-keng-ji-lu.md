@@ -5,7 +5,7 @@ tags:
   - 小程序
   - 前端
 categories:
-  - 开发笔记
+  - Tech
 typora-root-url: ../../static
 ---
 

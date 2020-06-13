@@ -1,7 +1,7 @@
 ---
 title: Rust Recommanded Project Structure
 categories:
-  - tech
+  - Tech
 date: 2020-01-06 22:51:41
 tags:
   - rust

@@ -22,7 +22,7 @@ unsafe= true
     author = "Ryan Li"
     info = "A Python and Rust Programmer"
     description = "Ryan Li's personal website"
-    keywords = "blog,developer,personal"
+    keywords = "blog,developer,personal,python,rust"
     avatarurl = "/images/avatar.png"
 
     favicon_32 = "/favicon/favicon-32x32.png"
