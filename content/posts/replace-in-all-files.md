@@ -1,8 +1,10 @@
 ---
 title: Replace In All Files
 date: 2019-11-07 22:40:05
+categories:
+  - Tech
 tags:
-  - vim
+  - Vim
   - ripgrep
 typora-root-url: ../../static
 ---

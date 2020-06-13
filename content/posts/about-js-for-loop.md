@@ -1,8 +1,10 @@
 ---
 title: Javascript 中 for 循环的使用方式
 date: 2017-08-16T10:51:52+08:00
+categories:
+  - Tech
 tags:
-  - javascript
+  - JavaScript
 typora-root-url: ../../static
 ---
 

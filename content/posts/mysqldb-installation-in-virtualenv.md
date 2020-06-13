@@ -1,10 +1,12 @@
 ---
 title: Install MySQLdb in virtualenv，从入门到放弃
 date: 2017-08-13T14:08:41+08:00
+categories:
+  - Tech
 tags:
-  - python
-  - mysql
-  - virtualenv
+  - Python
+  - MySQL
+  - Virtualenv
 typora-root-url: ../../static
 ---
 

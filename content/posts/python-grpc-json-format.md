@@ -1,10 +1,12 @@
 ---
 title: Python gRPC Json Format 的小坑
 date: 2019-11-07 22:31:12
+categories:
+  - Tech
 tags:
-  - python
-  - gprc
-  - json
+  - Python
+  - gRPC
+  - JSON
 typora-root-url: ../../static
 ---
 ## 背景

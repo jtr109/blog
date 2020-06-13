@@ -1,9 +1,10 @@
 ---
 title: vim 使用技巧
 date: 2017-08-13T11:50:29+08:00
+categories:
+  - Tech
 tags:
-  - vim
-  - skills
+  - Vim
 typora-root-url: ../../static
 ---
 

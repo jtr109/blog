@@ -1,6 +1,8 @@
 ---
 title: LISP 中的各种相等表示
 date: 2017-11-28T07:52:09+08:00
+categories:
+  - Tech
 tags:
   - LISP
 typora-root-url: ../../static

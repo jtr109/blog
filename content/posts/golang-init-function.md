@@ -2,8 +2,10 @@
 title: "Golang Init Function"
 date: 2018-08-16T18:06:30+08:00
 draft: false
+categories:
+  - Tech
 tags:
-  - golang
+  - Golang
 typora-root-url: ../../static
 ---
 

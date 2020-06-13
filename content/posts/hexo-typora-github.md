@@ -1,10 +1,14 @@
 ---
 title: Post Blog with Hexo with Next
 date: 2019-11-07 19:48:56
+categories:
+  - Tech
+series:
+  - Blog Experimental Reports
 tags:
-  - hexo
-  - typora
-  - github
+  - Hexo
+  - Typora
+  - Github
 typora-root-url: ../../static
 ---
 

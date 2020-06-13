@@ -1,8 +1,11 @@
 ---
 title: flask 数据库迁移与部署的一些经验
 date: 2017-08-13T13:04:28+08:00
+categories:
+  - Tech
 tags:
-  - flask
+  - Flask
+  - Python
 typora-root-url: ../../static
 ---
 

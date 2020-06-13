@@ -5,6 +5,7 @@ categories:
   - Tech
 tags:
   - Rust
+  - test
 typora-root-url: ../../static
 ---
 ## 起因

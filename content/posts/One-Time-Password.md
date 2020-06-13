@@ -4,7 +4,7 @@ categories:
   - Tech
 date: 2020-01-07 23:45:24
 tags:
-  - Security
+  - security
   - Rust
 typora-root-url: ../../static
 ---

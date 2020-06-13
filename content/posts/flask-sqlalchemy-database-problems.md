@@ -1,9 +1,11 @@
 ---
 title: 关于flask-sqlalchemy中数据库操作的问题整理
 date: 2017-08-13T14:06:44+08:00
+categories:
+  - Tech
 tags:
-  - flask
-  - python
+  - Flask
+  - Python
 typora-root-url: ../../static
 ---
 

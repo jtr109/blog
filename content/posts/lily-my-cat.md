@@ -4,6 +4,8 @@ date: 2018-12-21T13:59:45+08:00
 draft: false
 categories:
   - Life
+tags:
+  - cat
 typora-root-url: ../../static
 ---
 

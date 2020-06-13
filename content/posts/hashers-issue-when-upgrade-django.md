@@ -2,9 +2,11 @@
 title: "Hashers Issue When Upgrade Django"
 date: 2018-09-02T11:11:23+08:00
 draft: false
+categories:
+  - Tech
 tags:
-  - python
-  - django
+  - Python
+  - Django
 typora-root-url: ../../static
 ---
 

@@ -1,11 +1,13 @@
 ---
 title: "Intergate Vue in Django"
 date: 2019-05-31T14:08:00+08:00
+categories:
+  - Tech
 tags:
-  - python
-  - django
-  - javascript
-  - vue
+  - Python
+  - Django
+  - JavaScript
+  - Vue
 typora-root-url: ../../static
 ---
 

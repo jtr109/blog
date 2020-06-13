@@ -2,8 +2,8 @@
 title: ArchLinux 安装初探
 date: 2017-10-19T22:01:55+08:00
 tags:
-  - archlinux
-  - linux
+  - Arch Linux
+  - Linux
 typora-root-url: ../../static
 ---
 

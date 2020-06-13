@@ -3,7 +3,6 @@ title: 小程序踩坑记录
 date: 2017-08-11T06:34:06+08:00
 tags:
   - 小程序
-  - 前端
 categories:
   - Tech
 typora-root-url: ../../static

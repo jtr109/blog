@@ -1,8 +1,10 @@
 ---
-title: css 学习笔记
+title: CSS 学习笔记
 date: 2017-08-13T12:30:45+08:00
+categories:
+  - Tech
 tags:
-  - css
+  - CSS
 typora-root-url: ../../static
 ---
 

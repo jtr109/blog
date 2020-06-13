@@ -1,8 +1,10 @@
 ---
 title: vim 插件配置笔记
 date: 2017-08-13T13:20:52+08:00
+categories:
+  - Tech
 tags:
-  - vim
+  - Vim
 typora-root-url: ../../static
 ---
 

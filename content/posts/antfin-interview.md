@@ -2,6 +2,10 @@
 title: "Antfin Interview"
 date: 2018-09-12T21:51:16+08:00
 draft: true
+categories:
+  - Tech
+tags:
+  - interview
 typora-root-url: ../../static
 ---
 

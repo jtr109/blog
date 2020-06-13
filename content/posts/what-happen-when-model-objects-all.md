@@ -2,6 +2,10 @@
 title: "What Happen When Model Objects All"
 date: 2018-08-27T17:01:12+08:00
 draft: false
+categories:
+  - Tech
+tags:
+  - Python
 typora-root-url: ../../static
 ---
 

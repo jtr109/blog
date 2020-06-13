@@ -1,6 +1,8 @@
 ---
 title: ES6 学习笔记
 date: 2017-09-07T16:41:23+08:00
+categories:
+  - Tech
 tags:
   - Javascript
 typora-root-url: ../../static

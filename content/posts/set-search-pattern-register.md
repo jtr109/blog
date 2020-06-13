@@ -1,14 +1,16 @@
 ---
-title: 在 VIM 中赋值搜索寄存器
+title: 在 Vim 中赋值搜索寄存器
 date: 2017-10-25T20:07:41+08:00
+categories:
+  - Tech
 tags:
-  - vim
+  - Vim
 typora-root-url: ../../static
 ---
 
 ## In English
 
-Highlight the search pattern register in VIM.
+Highlight the search pattern register in Vim.
 
 ## 实现的目的
 

@@ -1,8 +1,10 @@
 ---
 title: Homebrew 镜像推荐
 date: 2017-08-18T09:03:47+08:00
+categories:
+  - Tech
 tags:
-  - homebrew
+  - Homebrew
 typora-root-url: ../../static
 ---
 
