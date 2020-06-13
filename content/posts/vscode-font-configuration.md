@@ -27,11 +27,9 @@ tags:
 
 ### 安装字体
 
-下载并解压字体包，可以看到各种 Operator Mono 字体。逐一双击安装。
+下载并解压字体包，可以看到各种 Operator Mono 字体，全选拖拽到 Font Book 中。
 
 ![VSCode%202a432b75b011476185f70e223ceaaf31/Untitled.png](/images/vscode-font-configuration.assets/Untitled.png)
-
-![VSCode%202a432b75b011476185f70e223ceaaf31/Untitled%201.png](/images/vscode-font-configuration.assets/1.png)
 
 ![VSCode%202a432b75b011476185f70e223ceaaf31/Untitled%202.png](/images/vscode-font-configuration.assets/2.png)
 
