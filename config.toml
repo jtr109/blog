@@ -1,6 +1,7 @@
 baseUrl = "https://jtr109.github.io"
 title = "jtr109's Castle"
 theme = "hugo-coder"
+# theme = "ananke"
 languagecode = "en"
 defaultcontentlanguage = "en"
 
@@ -13,9 +14,12 @@ pygmentscodefencesguesssyntax = true
 
 disqusShortname = "jtr109"
 
+[markup.goldmark.renderer]
+unsafe= true
+
 [params]
-    author = "jtr109"
-    info = "Python and Rust Programmer"
+    author = "Ryan Li"
+    info = "A Python and Rust Programmer"
     description = "Ryan Li's personal website"
     keywords = "blog,developer,personal"
     avatarurl = "/images/avatar.png"
@@ -49,6 +53,11 @@ disqusShortname = "jtr109"
 #     icon = "fab fa-twitter fa-2x"
 #     weight = 3
 #     url = "https://twitter.com/johndoe/"
+[[params.social]]
+    name = "Mail"
+    icon = "fas fa-envelope"
+    weight = 5
+    url = "mailto:conbas2019@gmail.com"
 [[params.social]]
     name = "RSS"
     icon = "fas fa-rss"
