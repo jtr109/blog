@@ -5,6 +5,8 @@ draft: false
 typora-root-url: ../../static
 categories:
   - Tech
+series:
+  - "Blog Experimental Reports"
 tags:
   - Typora
   - Hugo

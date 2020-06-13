@@ -38,6 +38,15 @@ unsafe= true
     math = true
     custom_css = ["css/custom.css"]
 
+    colorscheme = "auto"
+
+    maxSeeAlsoItems = 5
+
+[taxonomies]
+  category = "categories"
+  series = "series"
+  tag = "tags"
+
 # Social links
 [[params.social]]
     name = "Github"

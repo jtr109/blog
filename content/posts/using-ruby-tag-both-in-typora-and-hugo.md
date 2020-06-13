@@ -5,8 +5,11 @@ typora-root-url: ../../static
 draft: false
 categories:
   - Tech
+series:
+  - "Blog Experimental Reports"
 tags:
   - HTML
+  - Blog
 ---
 
 ## 背景
@@ -57,6 +60,25 @@ tags:
 实现的效果如下：
 
 > 我们将要学习<ruby>计算过程<rp>（</rp><rt>computational process</rt><rp>）</rp></ruby>的概念。
+
+## 在 Hugo 中使用 Ruby Tag
+
+经过上述处理，注释可以在 Typora 中完美显示，但是 Hugo 中却遇到了问题：
+
+![注释内容直接显示在了括号里](/images/using-ruby-tag-both-in-typora-and-hugo.assets/image-20200613174707353.png)
+
+可以看到 `<ruby>` 并没有生效。
+
+查找后发现原因是渲染模块 Goldmark 默认不转换 Markdown 中大部分的 HTML 标记。所以为了让 `<ruby>` 可以显示，需要在配置中加入：
+
+```toml
+[markup.goldmark.renderer]
+unsafe= true
+```
+
+显式声明支持 unsafe HTML 的渲染。服务重新渲染后，即可正常显示：
+
+![注释显示在目标内容的上方](/images/using-ruby-tag-both-in-typora-and-hugo.assets/image-20200613180726704.png)
 
 ## 参考
 
