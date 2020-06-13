@@ -4,7 +4,7 @@ date: 2017-08-11T07:41:21+08:00
 categories:
   - tech
 series:
-  - blog Experimental Reports
+  - Blog Experimental Reports
 tags:
   - Hexo
   - blog

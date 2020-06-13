@@ -3,7 +3,7 @@ title: "Lily My Cat"
 date: 2018-12-21T13:59:45+08:00
 draft: false
 categories:
-  - Life
+  - life
 tags:
   - cat
 typora-root-url: ../../static

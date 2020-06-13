@@ -2,9 +2,9 @@
 title: The Legend of 1900
 date: 2019-11-12 08:09:52
 tags:
-  - Movie
+  - movie
 categories:
-  - Life
+  - life
 typora-root-url: ../../static
 ---
 

@@ -6,9 +6,9 @@ draft: false
 categories:
   - tech
 tags:
-  - Datetime
-  - Time Zone
-  - Time
+  - datetime
+  - time zone
+  - time
 ---
 
 ## 背景
