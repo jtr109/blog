@@ -13,6 +13,7 @@ pygmentscodefences = true
 pygmentscodefencesguesssyntax = true
 
 disqusShortname = "jtr109"
+googleAnalytics = "UA-169289956-1"
 
 [markup.goldmark.renderer]
 unsafe= true
