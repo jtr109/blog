@@ -91,7 +91,7 @@ l2 = [2, 4]
 
 回答:
 
-GIL 的大致逻辑是使用系统自身的分时复用机制实现并发. GIL 能解决的问题是 wait simulaneously, 即 IO 等待时间过长, 会切换执行其他线程. 但是如果对于计算量大, 每个线程有比较大的变量存在时, GIL 的机制会导致计算到一半的线程被暂停, 如内存等资源的竞争, context 的切换成本都对性能造成非常大的影响. 导致基于 GIL 的并发使用场景并不广泛.
+GIL 的大致逻辑是使用系统自身的分时复用机制实现并发. GIL 能解决的问题是 wait simulaneously, 即 IO 等待时间过长, 会切换执行其他线程. 但是如果对于计算量大, 每个线程有比较大的变量存在时, GIL 的机制会导致计算到一半的线程被暂停, 如内存等资源的竞争, context 的切换成本都对性能造成非常大的影响. 导致基于 GIL 的并发使用场景并不广泛.
 
 而 coroutine 的好处在于把切换的时机交给协程自己, 使协程在合适的时机被暂停和上下文切换.
 
@@ -125,7 +125,7 @@ GIL 的大致逻辑是使用系统自身的分时复用机制实现并发. GIL �
 > An **iterable** object is an object that implements `__iter__`, which is expected to return an **iterator** object.
 > An **iterator** is an object that implements `next`, which is expected to return the next element of the iterable object that returned it, and raise a `StopIteration` exception when no more elements are available.
 
-我们以文章中的示例来 review 一下:
+我们以文章中的示例来 review 一下:
 
 ```python
 import random
@@ -154,7 +154,7 @@ next(r)
 
 看了这句话应该很明显了, `range` 就是一个典型的 generator.
 
-推荐使用 `yield` 实现, 例如:
+推荐使用 `yield` 实现, 例如:
 
 ```python
 def yrange(n):
@@ -164,11 +164,11 @@ def yrange(n):
         i += 1
 ```
 
-Reference in [Python Practic Book](https://anandology.com/python-practice-book/iterators.html).
+Reference in [Python Practic Book](https://anandology.com/python-practice-book/iterators.html).
 
 ### http 请求结构
 
-参考[网页](http://www.runoob.com/http/http-messages.html)
+参考[网页](http://www.runoob.com/http/http-messages.html)
 
 客户端发送一个 HTTP 请求到服务器的请求消息包括以下格式: 请求行（request line）, 请求头部（header）, 空行和请求数据四个部分组成.
 
