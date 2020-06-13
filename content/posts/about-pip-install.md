@@ -1,7 +1,7 @@
 ---
 title: Pip Install From Git Repositories
 categories:
-  - tech
+  - Tech
 date: 2019-11-27 17:27:14
 tags:
   - Python

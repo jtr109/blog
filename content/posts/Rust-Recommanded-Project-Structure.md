@@ -4,7 +4,7 @@ categories:
   - Tech
 date: 2020-01-06 22:51:41
 tags:
-  - rust
+  - Rust
 typora-root-url: ../../static
 ---
 

@@ -1,9 +1,11 @@
 ---
 title: Diesel UUID Problem Note
 date: 2019-11-07 22:36:29
+categories:
+  - Tech
 tags:
-  - rust
-  - diesel
+  - Rust
+  - Diesel
 typora-root-url: ../../static
 ---
 ## 背景描述
