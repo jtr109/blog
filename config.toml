@@ -86,8 +86,12 @@ unsafe= true
     weight = 2
     url = "/categories/"
 [[menu.main]]
+    name = "Series"
+    weight = 3
+    url = "/series/"
+[[menu.main]]
     name = "Tags"
-    weight = 2
+    weight = 4
     url = "/tags/"
 # [[menu.main]]
 #     name = "About"
