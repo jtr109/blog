@@ -36,6 +36,6 @@ Google Authenticator 也是一种 TOTP，只不过它的 secret key 必须使用
 
 ## Reference
 
-* [^1]: Google Authenticator 的特殊性参考[这个项目中的说明](https://github.com/avacariu/rust-oath#google-authenticator)
+[^1]: Google Authenticator 的特殊性参考[这个项目中的说明](https://github.com/avacariu/rust-oath#google-authenticator)
+[^2]:[已提交 pull request](https://github.com/hanskorg/google-authenticator-rust/pull/3)
 
-* [^2]: [已提交 pull request](https://github.com/hanskorg/google-authenticator-rust/pull/3)
