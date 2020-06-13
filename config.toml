@@ -49,7 +49,7 @@ unsafe= true
 
 # Social links
 [[params.social]]
-    name = "Github"
+    name = "GitHub"
     icon = "fab fa-github fa-2x"
     weight = 1
     url = "https://github.com/jtr109/"
@@ -58,20 +58,20 @@ unsafe= true
 #     icon = "fab fa-gitlab fa-2x"
 #     weight = 2
 #     url = "https://gitlab.com/johndoe/"
-# [[params.social]]
-#     name = "Twitter"
-#     icon = "fab fa-twitter fa-2x"
-#     weight = 3
-#     url = "https://twitter.com/johndoe/"
+[[params.social]]
+    name = "Twitter"
+    icon = "fab fa-twitter fa-2x"
+    weight = 3
+    url = "https://twitter.com/conbas2019/"
 [[params.social]]
     name = "Mail"
     icon = "fas fa-envelope"
-    weight = 5
+    weight = 4
     url = "mailto:conbas2019@gmail.com"
 [[params.social]]
     name = "RSS"
     icon = "fas fa-rss"
-    weight = 6
+    weight = 5
     url = "/index.xml"
     rel = "alternate"
     type = "application/rss+xml"
