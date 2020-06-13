@@ -2,11 +2,11 @@
 title: "Superscript Comment in Markdown"
 date: 2020-06-13T20:28:42+08:00
 typora-root-url: ../../static
-draft: true
+draft: false
 categories:
   - tech
 series:
-  - "Blog Experimental Reports"
+  - Blog Experimental Reports
 tags:
   - Markdown
   - blog
