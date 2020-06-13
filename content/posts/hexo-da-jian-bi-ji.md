@@ -4,10 +4,10 @@ date: 2017-08-11T07:41:21+08:00
 categories:
   - tech
 series:
-  - Blog Experimental Reports
+  - blog Experimental Reports
 tags:
   - Hexo
-  - Blog
+  - blog
 typora-root-url: ../../static
 ---
 

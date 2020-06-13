@@ -9,7 +9,7 @@ series:
   - "Blog Experimental Reports"
 tags:
   - HTML
-  - Blog
+  - blog
 ---
 
 ## 背景

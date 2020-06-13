@@ -10,7 +10,7 @@ series:
 tags:
   - Typora
   - Hugo
-  - Blog
+  - blog
 ---
 
 ## 背景

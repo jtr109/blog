@@ -4,7 +4,7 @@ date: 2019-11-07 19:48:56
 categories:
   - tech
 series:
-  - Blog Experimental Reports
+  - blog Experimental Reports
 tags:
   - Hexo
   - Typora
