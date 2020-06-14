@@ -1,6 +1,6 @@
 ---
 title: "Bulk Replace Control Characters in Files"
-date: 2020-06-13T23:24:57+08:00
+date: 2019-06-13T23:24:57+08:00
 typora-root-url: ../../static
 draft: false
 categories:
