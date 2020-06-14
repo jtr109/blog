@@ -11,9 +11,7 @@ tags:
   - editor
 ---
 
-## 背景
-
-在修改 VSCode 的 color theme 时会看到一些 theme 的效果图中使用了非常好看的手写体字样。
+在修改 VSCode 的 color theme 时会看到一些 theme 的效果图中使用了非常好看的手写体字样。今天就让我们一起
 
 ![https://raw.githubusercontent.com/ahmadawais/shades-of-purple-vscode/master/images/JavaScript.png](https://raw.githubusercontent.com/ahmadawais/shades-of-purple-vscode/master/images/JavaScript.png)
 

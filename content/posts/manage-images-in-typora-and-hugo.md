@@ -6,7 +6,7 @@ typora-root-url: ../../static
 categories:
   - tech
 series:
-  - "Blog Experimental Reports"
+  - "Blog Notes"
 tags:
   - Typora
   - Hugo

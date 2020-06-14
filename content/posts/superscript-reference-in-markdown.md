@@ -6,7 +6,7 @@ draft: false
 categories:
   - tech
 series:
-  - Blog Experimental Reports
+  - Blog Notes
 tags:
   - Markdown
   - blog

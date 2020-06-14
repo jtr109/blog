@@ -11,3 +11,6 @@
 	path = public
 	url = git@github.com:jtr109/jtr109.github.io.git
 	branch = master
+[submodule "themes/meme"]
+	path = themes/meme
+	url = https://github.com/reuixiy/hugo-theme-meme.git
