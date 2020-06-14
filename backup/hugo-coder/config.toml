@@ -1,0 +1,99 @@
+baseUrl = "https://jtr109.github.io"
+title = "jtr109's Castle"
+theme = "hugo-coder"
+# theme = "ananke"
+languagecode = "en"
+defaultcontentlanguage = "en"
+
+paginate = 20
+canonifyurls = true
+
+pygmentsstyle = "solarized-light"
+pygmentscodefences = true
+pygmentscodefencesguesssyntax = true
+
+disqusShortname = "jtr109"
+googleAnalytics = "UA-169289956-1"
+
+[markup.goldmark.renderer]
+unsafe= true
+
+[params]
+    author = "Ryan Li"
+    info = "A Python and Rust Programmer"
+    description = "Ryan Li's personal website"
+    keywords = "blog,developer,personal,python,rust"
+    avatarurl = "/avatar/myAvatar.svg"
+
+    favicon_32 = "/favicon/favicon-32x32.png"
+    favicon_16 = "/favicon/favicon-16x16.png"
+
+    footercontent = "Welcome to My Castle."
+
+    hidecredits = false
+    hidecopyright = false
+
+    rtl = false
+
+    math = true
+    custom_css = ["css/custom.css"]
+
+    colorscheme = "auto"
+
+    maxSeeAlsoItems = 5
+
+[taxonomies]
+  category = "categories"
+  series = "series"
+  tag = "tags"
+
+# Social links
+[[params.social]]
+    name = "GitHub"
+    icon = "fab fa-github fa-2x"
+    weight = 1
+    url = "https://github.com/jtr109/"
+# [[params.social]]
+#     name = "Gitlab"
+#     icon = "fab fa-gitlab fa-2x"
+#     weight = 2
+#     url = "https://gitlab.com/johndoe/"
+[[params.social]]
+    name = "Twitter"
+    icon = "fab fa-twitter fa-2x"
+    weight = 3
+    url = "https://twitter.com/conbas2019/"
+[[params.social]]
+    name = "Mail"
+    icon = "fas fa-envelope"
+    weight = 4
+    url = "mailto:conbas2019@gmail.com"
+[[params.social]]
+    name = "RSS"
+    icon = "fas fa-rss"
+    weight = 5
+    url = "/index.xml"
+    rel = "alternate"
+    type = "application/rss+xml"
+
+# Menu links
+[[menu.main]]
+    name = "Blog"
+    weight = 1
+    url  = "/posts/"
+[[menu.main]]
+    name = "Categories"
+    weight = 2
+    url = "/categories/"
+[[menu.main]]
+    name = "Series"
+    weight = 3
+    url = "/series/"
+[[menu.main]]
+    name = "Tags"
+    weight = 4
+    url = "/tags/"
+# [[menu.main]]
+#     name = "About"
+#     weight = 2
+#     url = "/about/"
