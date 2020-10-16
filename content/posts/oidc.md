@@ -6,8 +6,8 @@ categories:
   - tect
 series:
 tags:
-  - openid
-  - oidc
+  - OpenID
+  - OIDC
   - authentication
 ---
 
