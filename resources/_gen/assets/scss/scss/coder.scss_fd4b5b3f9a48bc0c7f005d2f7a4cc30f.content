@@ -246,6 +246,7 @@ img.emoji {
         margin: 1.6rem 0 1.6rem 0; } }
     .list ul li .date {
       display: inline-block;
+      flex: 1;
       width: 20.0rem;
       text-align: right;
       margin-right: 3.0rem; }
@@ -255,11 +256,16 @@ img.emoji {
           text-align: left; } }
     .list ul li .title {
       font-size: 1.8rem;
+      flex: 2;
       color: #212121;
       font-family: Lato, Helvetica, sans-serif;
       font-weight: 700; }
       .list ul li .title:hover, .list ul li .title:focus {
         color: #1565c0; }
+
+@media only screen and (min-width: 768.1px) {
+  .list ul:not(.pagination) li {
+    display: flex; } }
 
 .centered {
   display: flex;
@@ -362,15 +368,22 @@ img.emoji {
         margin-left: 1.0rem;
         margin-right: 1.0rem; }
     @media only screen and (max-width: 768px) {
+      .navigation .navigation-list .separator {
+        display: none; } }
+    @media only screen and (max-width: 768px) {
       .navigation .navigation-list .menu-separator {
         border-top: 2px solid #212121;
         margin: 0 8.0rem; }
         .navigation .navigation-list .menu-separator span {
           display: none; } }
+  .navigation #dark-mode-toggle {
+    margin: 1.7rem 0;
+    font-size: 2.4rem;
+    line-height: inherit; }
   .navigation #menu-toggle {
     display: none; }
     @media only screen and (max-width: 768px) {
-      .navigation #menu-toggle:checked + label {
+      .navigation #menu-toggle:checked + label > i {
         color: #E0E0E0; }
       .navigation #menu-toggle:checked + label + ul {
         visibility: visible;
@@ -381,13 +394,15 @@ img.emoji {
     @media only screen and (max-width: 768px) {
       .navigation .menu-button {
         display: block;
+        margin: 1.8rem 0;
         font-size: 2.4rem;
-        font-weight: 400;
-        line-height: 6.0rem;
-        color: #212121;
-        cursor: pointer; }
-        .navigation .menu-button:hover, .navigation .menu-button:focus {
-          color: #1565c0; } }
+        font-weight: 400; } }
+  .navigation i {
+    color: #212121;
+    cursor: pointer; }
+    .navigation i:hover, .navigation i:focus {
+      color: #1565c0; }
+
 .pagination {
   margin-top: 6.0rem;
   text-align: center;
