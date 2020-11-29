@@ -34,7 +34,7 @@ tags:
 
 邀请码：
 
-<img src="/images/my-invitation-codes.assets/60683DA9-0929-4B58-BDF7-444E022ADFD8.jpeg" width = "300" height = "400" alt="图片名称" />
+<img src="/images/my-invitation-codes.assets/60683DA9-0929-4B58-BDF7-444E022ADFD8.jpeg" width = "400" height = "600" alt="图片名称" />
 
 邀请规则：
 
