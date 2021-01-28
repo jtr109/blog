@@ -1,5 +1,5 @@
 ---
-title: "The Moderna Covid 19 Mrna 1273 Vaccine What You Need to Know"
+title: "关于莫德纳 COVID-19 (mRNA-1273) 疫苗你需要知道的事"
 date: 2021-01-28T23:29:20+08:00
 typora-root-url: ../../static
 categories:
@@ -7,10 +7,6 @@ series:
 tags:
   - translate
 ---
-
-
-
-# 关于莫德纳 COVID-19 (mRNA-1273) 疫苗你需要知道的事
 
 原文链接：[The Moderna COVID-19 (mRNA-1273) vaccine: what you need to know](https://www.who.int/news-room/feature-stories/detail/the-moderna-covid-19-mrna-1273-vaccine-what-you-need-to-know)
 
