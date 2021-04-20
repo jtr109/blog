@@ -1,5 +1,5 @@
 ---
-title: "关于莫德纳 COVID-19 (mRNA-1273) 疫苗你需要知道的事"
+title: "关于莫德纳新冠病毒疫苗（mRNA-1273）你需要知道的事"
 date: 2021-01-28T23:29:20+08:00
 typora-root-url: ../../static
 categories:

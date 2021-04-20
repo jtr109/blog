@@ -1,5 +1,5 @@
 ---
-title: Using Gitlab CI in Project
+title: "Using Gitlab CI in Project"
 date: 2019-11-08 09:44:11
 categories:
   - tech
