@@ -8,6 +8,7 @@ series:
 tags:
   - network
   - TCP
+mermaid: true
 ---
 
 ## 概述
