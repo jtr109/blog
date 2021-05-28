@@ -58,7 +58,7 @@ spec:
     path: "/mnt/data"  # the directory created on node
 ```
 
-After created, we can claim it on Kubernetes. Here is the config file:
+After created, we can claim it on Kubernetes. Here is the config file:
 
 ```yaml
 # pvc.yaml

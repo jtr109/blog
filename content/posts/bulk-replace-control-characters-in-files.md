@@ -52,7 +52,7 @@ Now we can use `sed` to replace all `^H` and `^M` in our posts. Pay attention
 
 
 ```shell
-find ./content/posts -name "*.md" -print0 | xargs -0 sed -i '' -e 's/^H//g; s/^M//g; s/^\\//g'
+find ./content/posts -name "*.md" -print0 | xargs -0 sed -i '' -e 's/^H//g; s/^M//g; s/^\//g'
 ```
 
 
@@ -73,7 +73,6 @@ After refreshing the page I opened, everything done!
 - [This answer](https://stackoverflow.com/a/11650301/6522746) shows how to execute on all files.
 - [This one](https://stackoverflow.com/a/13180357/6522746) asked how to type control characters in command line.
 - The comments of [this answer](https://stackoverflow.com/a/13180336/6522746) explain how to use `sed` for replacing in Mac.
-
 
 
 
