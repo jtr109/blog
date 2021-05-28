@@ -1,5 +1,5 @@
 ---
-title: "使用 Rust 实现符合开闭原则的财务数据系统的（部分）结构"
+title: "使用 Rust 实现数据库对数据模型的依赖"
 date: 2020-11-12T16:33:27+08:00
 typora-root-url: ../../static
 categories:
